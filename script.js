@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WISHLY — ONLINE GREETING & INVITATION DESIGN PLATFORM
+   PETALWISH — ONLINE GREETING & INVITATION DESIGN PLATFORM
    Vanilla JavaScript Application Engine
    ========================================================================== */
 
@@ -572,10 +572,10 @@
   ];
 
   const STORAGE_KEYS = {
-    FAVORITES: 'wishly_favorites_v1',
-    DESIGNS: 'wishly_my_designs_v1',
-    RSVPS: 'wishly_rsvps_v1',
-    USER: 'wishly_user_v1'
+    FAVORITES: 'petalwish_favorites_v1',
+    DESIGNS: 'petalwish_my_designs_v1',
+    RSVPS: 'petalwish_rsvps_v1',
+    USER: 'petalwish_user_v1'
   };
 
   let state = {
@@ -2064,7 +2064,7 @@
 
     Promise.all(imageLoadPromises).then(() => {
       const link = document.createElement('a');
-      link.download = `${state.editorTitle.replace(/\s+/g, '_')}_Wishly.png`;
+      link.download = `${state.editorTitle.replace(/\s+/g, '_')}_PetalWish.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
       showToast('Download completed!');
@@ -2210,7 +2210,7 @@
       const userPlan = document.querySelector('.user-plan');
       if (userAvatar) userAvatar.textContent = initials;
       if (userName) userName.textContent = state.user.name;
-      if (userPlan) userPlan.textContent = 'Wishly Premium';
+      if (userPlan) userPlan.textContent = 'PetalWish Premium';
     } else {
       if (DOM.navLoginBtn) DOM.navLoginBtn.classList.remove('hidden');
       if (DOM.userHeaderProfile) DOM.userHeaderProfile.classList.add('hidden');
@@ -2220,7 +2220,7 @@
       const userPlan = document.querySelector('.user-plan');
       if (userAvatar) userAvatar.textContent = 'W';
       if (userName) userName.textContent = 'Creative Workspace';
-      if (userPlan) userPlan.textContent = 'Wishly Studio';
+      if (userPlan) userPlan.textContent = 'PetalWish Studio';
     }
   }
 
@@ -2730,7 +2730,7 @@
       if (navigator.share) {
         navigator.share({
           title: state.editorTitle,
-          text: 'Check out my custom design on Wishly!',
+          text: 'Check out my custom design on PetalWish!',
           url: window.location.href
         }).catch(() => {});
       } else {
@@ -2788,33 +2788,43 @@
       DOM.loginModalOverlay.classList.add('hidden');
     });
 
-    // Toggle Login / Signup Tabs
-    DOM.authTabLogin.addEventListener('click', () => {
-      DOM.authTabLogin.classList.add('active');
-      DOM.authTabSignup.classList.remove('active');
-      document.getElementById('signup-name-group').classList.add('hidden');
-      document.getElementById('auth-modal-title').textContent = 'Welcome to Wishly';
-      document.getElementById('auth-modal-sub').textContent = 'Sign in to save and access your custom design projects';
-      document.getElementById('auth-submit-btn').textContent = 'Log In to Wishly';
+    // Sliding Login / Signup UI Toggles
+    const authWrapper = document.getElementById('auth-wrapper');
+    
+    document.querySelectorAll('.register-trigger').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (authWrapper) authWrapper.classList.add('toggled');
+      });
     });
 
-    DOM.authTabSignup.addEventListener('click', () => {
-      DOM.authTabSignup.classList.add('active');
-      DOM.authTabLogin.classList.remove('active');
-      document.getElementById('signup-name-group').classList.remove('hidden');
-      document.getElementById('auth-modal-title').textContent = 'Create an Account';
-      document.getElementById('auth-modal-sub').textContent = 'Start designing personalized greeting cards and invitations';
-      document.getElementById('auth-submit-btn').textContent = 'Create Wishly Account';
+    document.querySelectorAll('.login-trigger').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (authWrapper) authWrapper.classList.remove('toggled');
+      });
     });
 
-    // Form submit
-    DOM.authForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const email = document.getElementById('auth-email').value.trim();
-      const nameInput = document.getElementById('auth-name');
-      const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : email.split('@')[0];
-      loginUser(name, email);
-    });
+    // Form Submits
+    const signinForm = document.getElementById('signin-form');
+    const signupForm = document.getElementById('signup-form');
+
+    if (signinForm) {
+      signinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('signin-email').value.trim();
+        loginUser(email.split('@')[0], email);
+      });
+    }
+
+    if (signupForm) {
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('signup-name').value.trim();
+        const email = document.getElementById('signup-email').value.trim();
+        loginUser(name, email);
+      });
+    }
 
     // Demo User Chips
     document.querySelectorAll('.demo-user-chip').forEach(chip => {

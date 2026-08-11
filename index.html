@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wishly — Design Something Worth Remembering</title>
+  <title>PetalWish — Cards That Connect</title>
   <meta name="description" content="Create stunning greeting cards, invitations, and announcements with professionally designed templates you can customize online.">
   
   <!-- Typography / Fonts -->
@@ -22,19 +22,8 @@
       <div class="navbar-container">
         <!-- Logo -->
         <a href="#" class="brand-logo" id="logo-btn">
-          <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="36" height="36" rx="10" fill="url(#logo-grad)"/>
-            <path d="M12 11C12 9.89543 12.8954 9 14 9H22C23.1046 9 24 9.89543 24 11V25C24 26.1046 23.1046 27 22 27H14C12.8954 27 12 26.1046 12 25V11Z" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-            <circle cx="18" cy="15" r="2.5" stroke="white" stroke-width="2"/>
-            <path d="M15 21L17 19L21 23" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <defs>
-              <linearGradient id="logo-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#7C5CFC"/>
-                <stop offset="1" stop-color="#E8A9C1"/>
-              </linearGradient>
-            </defs>
-          </svg>
-          <span class="brand-name">Wishly</span>
+          <img class="logo-icon" src="assets/images/logo.png" alt="PetalWish Logo">
+          <span class="brand-name">PetalWish</span>
         </a>
 
         <!-- Desktop Navigation -->
@@ -364,7 +353,7 @@
       <section class="how-it-works-section">
         <div class="section-header center">
           <span class="section-tag">Simple 3-Step Process</span>
-          <h2 class="section-title">How Wishly Works</h2>
+          <h2 class="section-title">How PetalWish Works</h2>
           <p class="section-subtitle">Crafting personalized, high-end greeting cards and invitations takes just moments</p>
         </div>
 
@@ -529,7 +518,7 @@
               </svg>
             </button>
             <div class="faq-answer">
-              <p>Yes! Every template in Wishly is 100% customizable. You can modify text, adjust fonts and line spacing, change vector colors, add new shapes, upload images, and alter background gradients.</p>
+              <p>Yes! Every template in PetalWish is 100% customizable. You can modify text, adjust fonts and line spacing, change vector colors, add new shapes, upload images, and alter background gradients.</p>
             </div>
           </div>
 
@@ -577,7 +566,7 @@
               </svg>
             </button>
             <div class="faq-answer">
-              <p>Yes! Wishly includes an integrated Invitation Creator and RSVP Manager. You can attach event details (date, time, venue, host description) and let guests accept, decline, or mark maybe.</p>
+              <p>Yes! PetalWish includes an integrated Invitation Creator and RSVP Manager. You can attach event details (date, time, venue, host description) and let guests accept, decline, or mark maybe.</p>
             </div>
           </div>
 
@@ -617,7 +606,7 @@
             <div class="user-avatar">C</div>
             <div class="user-info">
               <span class="user-name">Creative Workspace</span>
-              <span class="user-plan">Wishly Studio</span>
+              <span class="user-plan">PetalWish Studio</span>
             </div>
           </div>
           <nav class="sidebar-menu">
@@ -790,7 +779,7 @@
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                     <circle cx="12" cy="7" r="4"></circle>
                   </svg>
-                  <span id="event-display-host">Hosted by: Wishly Hosts</span>
+                  <span id="event-display-host">Hosted by: PetalWish Hosts</span>
                 </div>
               </div>
 
@@ -855,7 +844,7 @@
               <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
           </button>
-          <span class="brand-name">Wishly</span>
+          <span class="brand-name">PetalWish</span>
           <span class="badge-editor">Editor</span>
         </div>
 
@@ -1178,7 +1167,7 @@
           </div>
 
           <div class="magic-modal-footer center">
-            <span class="magic-free-badge">Unlimited Free Tries • Powered by Wishly Magic AI</span>
+            <span class="magic-free-badge">Unlimited Free Tries • Powered by PetalWish Magic AI</span>
           </div>
         </form>
       </div>
@@ -1186,53 +1175,124 @@
 
     <!-- MODAL 4: LOG IN / SIGN UP MODAL -->
     <div class="modal-overlay hidden" id="login-modal-overlay">
-      <div class="modal-card auth-modal-box">
-        <button class="modal-close-btn" id="login-modal-close">
+      <div class="modal-card auth-modal-box auth-wrapper" id="auth-wrapper">
+        <!-- Close Button -->
+        <button class="modal-close-btn" id="login-modal-close" style="z-index: 150;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-        
-        <div class="auth-header center">
-          <h2 class="auth-title" id="auth-modal-title">Welcome to Wishly</h2>
-          <p class="auth-sub" id="auth-modal-sub">Sign in to save and access your custom design projects</p>
+
+        <!-- Floating shapes (always visible in background) -->
+        <div class="modal-petal petal-1"></div>
+        <div class="modal-petal petal-2"></div>
+        <div class="modal-petal petal-3"></div>
+
+        <!-- 1. SIGN IN FORM PANEL (Left by default) -->
+        <div class="auth-panel signin-panel">
+          <form id="signin-form" class="form-grid">
+            <div class="auth-header center slide-element">
+              <h2 class="auth-title">Welcome Back</h2>
+              <p class="auth-sub">Log in to your PetalWish account</p>
+            </div>
+            
+            <div class="form-group full-width slide-element">
+              <label for="signin-email">Email Address *</label>
+              <input type="email" id="signin-email" placeholder="name@example.com" required value="elena@example.com">
+            </div>
+
+            <div class="form-group full-width slide-element">
+              <label for="signin-password">Password *</label>
+              <input type="password" id="signin-password" placeholder="••••••••" required value="petalwish2026">
+            </div>
+
+            <div class="form-actions full-width slide-element">
+              <button type="submit" class="btn-primary width-full btn-pulse-glow" id="signin-submit-btn">Log In</button>
+            </div>
+
+            <div class="demo-login-wrap full-width slide-element">
+              <span class="demo-divider-text">OR CONTINUE AS DEMO USER</span>
+              <div class="demo-user-btns">
+                <button type="button" class="demo-user-chip" data-name="Elena Rostova" data-email="elena@example.com">Elena Rostova</button>
+                <button type="button" class="demo-user-chip" data-name="Julian & Maya" data-email="julian@example.com">Julian & Maya</button>
+                <button type="button" class="demo-user-chip" data-name="Sarah Sterling" data-email="sarah@example.com">Sarah Sterling</button>
+              </div>
+            </div>
+            
+            <p class="mobile-switch-text slide-element">Don't have an account? <a href="#" class="register-trigger">Sign Up</a></p>
+          </form>
         </div>
 
-        <div class="auth-tabs">
-          <button class="auth-tab active" id="auth-tab-login">Log In</button>
-          <button class="auth-tab" id="auth-tab-signup">Create Account</button>
+        <!-- 2. SIGN UP FORM PANEL (Right by default, hidden until toggled) -->
+        <div class="auth-panel signup-panel">
+          <form id="signup-form" class="form-grid">
+            <div class="auth-header center slide-element">
+              <h2 class="auth-title">Create Account</h2>
+              <p class="auth-sub">Join PetalWish today</p>
+            </div>
+
+            <div class="form-group full-width slide-element">
+              <label for="signup-name">Full Name *</label>
+              <input type="text" id="signup-name" placeholder="e.g. Elena Rostova" required>
+            </div>
+
+            <div class="form-group full-width slide-element">
+              <label for="signup-email">Email Address *</label>
+              <input type="email" id="signup-email" placeholder="name@example.com" required>
+            </div>
+
+            <div class="form-group full-width slide-element">
+              <label for="signup-password">Password *</label>
+              <input type="password" id="signup-password" placeholder="••••••••" required>
+            </div>
+
+            <div class="form-actions full-width slide-element">
+              <button type="submit" class="btn-primary width-full btn-pulse-glow" id="signup-submit-btn">Create Account</button>
+            </div>
+            
+            <p class="mobile-switch-text slide-element">Already have an account? <a href="#" class="login-trigger">Sign In</a></p>
+          </form>
         </div>
 
-        <form id="auth-form" class="form-grid margin-top-md">
-          <div class="form-group full-width hidden" id="signup-name-group">
-            <label for="auth-name">Full Name *</label>
-            <input type="text" id="auth-name" placeholder="e.g. Elena Rostova">
-          </div>
-
-          <div class="form-group full-width">
-            <label for="auth-email">Email Address *</label>
-            <input type="email" id="auth-email" placeholder="name@example.com" required value="elena@example.com">
-          </div>
-
-          <div class="form-group full-width">
-            <label for="auth-password">Password *</label>
-            <input type="password" id="auth-password" placeholder="••••••••" required value="wishly2026">
-          </div>
-
-          <div class="form-actions full-width">
-            <button type="submit" class="btn-primary width-full" id="auth-submit-btn">Log In to Wishly</button>
-          </div>
-
-          <div class="demo-login-wrap full-width">
-            <span class="demo-divider-text">OR CONTINUE AS DEMO USER</span>
-            <div class="demo-user-btns">
-              <button type="button" class="demo-user-chip" data-name="Elena Rostova" data-email="elena@example.com">Elena Rostova</button>
-              <button type="button" class="demo-user-chip" data-name="Julian & Maya" data-email="julian@example.com">Julian & Maya</button>
-              <button type="button" class="demo-user-chip" data-name="Sarah Sterling" data-email="sarah@example.com">Sarah Sterling</button>
+        <!-- 3. SLIDING OVERLAY CONTAINER (Right by default, slides left on toggle) -->
+        <div class="auth-overlay-container">
+          <div class="auth-overlay">
+            <!-- Sign In Overlay Panel (Shown when on Signup form) -->
+            <div class="overlay-panel overlay-left">
+              <div class="spinning-badge-wrap" style="position: relative; top: 0; left: 0; margin-bottom: 20px;">
+                <svg class="spinning-badge" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="3.5" fill="#FFFFFF"/>
+                  <path d="M12 2 C9.5 2 8 4.5 8 7 C8 9.5 9.5 11 12 11 C14.5 11 16 9.5 16 7 C16 4.5 14.5 2 12 2 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M12 22 C14.5 22 16 19.5 16 17 C16 14.5 14.5 13 12 13 C9.5 13 8 14.5 8 17 C8 19.5 9.5 22 12 22 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M2 12 C2 14.5 4.5 16 7 16 C9.5 16 11 14.5 11 12 C11 9.5 9.5 8 7 8 C4.5 8 2 9.5 2 12 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M22 12 C22 9.5 19.5 8 17 8 C14.5 8 13 9.5 13 12 C13 14.5 14.5 16 17 16 C19.5 16 22 14.5 22 12 Z" fill="rgba(255,255,255,0.7)"/>
+                </svg>
+              </div>
+              <h2>Welcome Back!</h2>
+              <p>To keep connected with us please login with your personal info</p>
+              <button class="nav-btn-secondary login-trigger" id="overlay-signin-btn">Sign In</button>
+            </div>
+            
+            <!-- Sign Up Overlay Panel (Shown when on Login form) -->
+            <div class="overlay-panel overlay-right">
+              <div class="spinning-badge-wrap" style="position: relative; top: 0; left: 0; margin-bottom: 20px;">
+                <svg class="spinning-badge" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="3.5" fill="#FFFFFF"/>
+                  <path d="M12 2 C9.5 2 8 4.5 8 7 C8 9.5 9.5 11 12 11 C14.5 11 16 9.5 16 7 C16 4.5 14.5 2 12 2 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M12 22 C14.5 22 16 19.5 16 17 C16 14.5 14.5 13 12 13 C9.5 13 8 14.5 8 17 C8 19.5 9.5 22 12 22 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M2 12 C2 14.5 4.5 16 7 16 C9.5 16 11 14.5 11 12 C11 9.5 9.5 8 7 8 C4.5 8 2 9.5 2 12 Z" fill="rgba(255,255,255,0.7)"/>
+                  <path d="M22 12 C22 9.5 19.5 8 17 8 C14.5 8 13 9.5 13 12 C13 14.5 14.5 16 17 16 C19.5 16 22 14.5 22 12 Z" fill="rgba(255,255,255,0.7)"/>
+                </svg>
+              </div>
+              <h2>Hello, Friend!</h2>
+              <p>Enter your details and start your creative journey with us</p>
+              <button class="nav-btn-secondary register-trigger" id="overlay-signup-btn">Sign Up</button>
             </div>
           </div>
-        </form>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
 
@@ -1248,7 +1308,7 @@
         <h3>Share Your Design</h3>
         <p>Share a direct link to your customized creation with friends, family, or guests.</p>
         <div class="share-input-box">
-          <input type="text" id="share-link-input" readonly value="https://wishly.app/design/share-7x92k1a">
+          <input type="text" id="share-link-input" readonly value="https://petalwish.app/design/share-7x92k1a">
           <button class="btn-primary" id="copy-share-btn">Copy Link</button>
         </div>
       </div>
@@ -1260,21 +1320,10 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="brand-logo">
-              <svg class="logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="36" height="36" rx="10" fill="url(#logo-grad-f)"/>
-                <path d="M12 11C12 9.89543 12.8954 9 14 9H22C23.1046 9 24 9.89543 24 11V25C24 26.1046 23.1046 27 22 27H14C12.8954 27 12 26.1046 12 25V11Z" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-                <circle cx="18" cy="15" r="2.5" stroke="white" stroke-width="2"/>
-                <path d="M15 21L17 19L21 23" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <defs>
-                  <linearGradient id="logo-grad-f" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#7C5CFC"/>
-                    <stop offset="1" stop-color="#E8A9C1"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <span class="brand-name">Wishly</span>
+              <img class="logo-icon" src="assets/images/logo.png" alt="PetalWish Logo">
+              <span class="brand-name">PetalWish</span>
             </div>
-            <p class="footer-tagline">Design something worth remembering.</p>
+            <p class="footer-tagline">Cards that connect.</p>
           </div>
 
           <div class="footer-col">
@@ -1321,7 +1370,7 @@
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; 2026 Wishly. All rights reserved.</p>
+          <p>&copy; 2026 PetalWish. All rights reserved.</p>
         </div>
       </div>
     </footer>

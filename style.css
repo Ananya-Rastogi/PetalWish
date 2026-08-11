@@ -1,5 +1,5 @@
 /* ==========================================================================
-   WISHLY — PREMIUM GREETING CARD & INVITATION DESIGN PLATFORM
+   PETALWISH — PREMIUM GREETING CARD & INVITATION DESIGN PLATFORM
    Style System & Components (Vanilla CSS3)
    ========================================================================== */
 
@@ -298,11 +298,14 @@ img {
 .logo-icon {
   width: 36px;
   height: 36px;
+  object-fit: cover;
+  object-position: 50% 16%;
+  transform: scale(1.6);
   transition: transform var(--transition-bounce);
 }
 
 .brand-logo:hover .logo-icon {
-  transform: rotate(-6deg) scale(1.06);
+  transform: scale(1.7) rotate(-6deg);
 }
 
 .brand-name {
@@ -2625,10 +2628,205 @@ img {
   color: var(--status-danger);
 }
 
-/* Auth Modal */
+/* Auth Modal & Sliding Panels */
 .auth-modal-box {
-  max-width: 440px;
-  padding: 36px;
+  max-width: 800px;
+  width: 100%;
+  height: 520px;
+  padding: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+}
+
+.auth-panel {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 50px;
+  position: absolute;
+  top: 0;
+  transition: all 0.6s ease-in-out;
+  background-color: var(--bg-surface);
+}
+
+.signin-panel {
+  left: 0;
+  z-index: 2;
+  opacity: 1;
+}
+
+.signup-panel {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+  transform: translateX(100%);
+}
+
+/* Sliding Toggle Action */
+.auth-wrapper.toggled .signin-panel {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.auth-wrapper.toggled .signup-panel {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Sliding Overlay */
+.auth-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.auth-wrapper.toggled .auth-overlay-container {
+  transform: translateX(-100%);
+}
+
+.auth-overlay {
+  background: linear-gradient(135deg, var(--purple-primary), var(--pink-accent));
+  color: #FFFFFF;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-wrapper.toggled .auth-overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+.overlay-panel p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.overlay-panel button {
+  border: 2px solid #FFFFFF;
+  background: transparent;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.overlay-panel button:hover {
+  background-color: #FFFFFF;
+  color: var(--purple-primary);
+  border-color: #FFFFFF;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.auth-wrapper.toggled .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.auth-wrapper.toggled .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Hide mobile switch text on desktop */
+.mobile-switch-text {
+  display: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 16px;
+}
+
+.mobile-switch-text a {
+  color: var(--purple-primary);
+  font-weight: 600;
+}
+
+/* Responsive Mobile Layout */
+@media (max-width: 640px) {
+  .auth-modal-box {
+    max-width: 440px;
+    height: auto;
+    padding: 36px 24px;
+    flex-direction: column;
+  }
+
+  .auth-panel {
+    width: 100%;
+    position: relative;
+    padding: 0;
+    transition: none;
+    transform: none !important;
+  }
+
+  .signin-panel {
+    display: flex;
+  }
+
+  .signup-panel {
+    display: none;
+  }
+
+  .auth-wrapper.toggled .signin-panel {
+    display: none;
+  }
+
+  .auth-wrapper.toggled .signup-panel {
+    display: flex;
+    opacity: 1;
+  }
+
+  .auth-overlay-container {
+    display: none;
+  }
+
+  .mobile-switch-text {
+    display: block;
+  }
 }
 
 .auth-title {
@@ -2735,6 +2933,126 @@ img {
 .demo-user-chip:hover {
   background-color: var(--purple-primary);
   color: #FFFFFF;
+}
+
+/* Auth Modal Motion & Animations */
+.auth-modal-box {
+  position: relative;
+  overflow: hidden; /* Keep floating petals inside the card */
+}
+
+/* 1. Floating Petals */
+.modal-petal {
+  position: absolute;
+  border-radius: 50% 0 50% 0; /* Petal shape */
+  opacity: 0.85;
+  pointer-events: none; /* Make sure they don't block clicks */
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.petal-1 {
+  top: 15%;
+  left: 4%;
+  width: 32px;
+  height: 20px;
+  background: linear-gradient(135deg, #EE99C2, #FFA781);
+  transform: rotate(25deg);
+  animation: modalFloat 5s ease-in-out infinite;
+}
+
+.petal-2 {
+  bottom: 15%;
+  right: 4%;
+  width: 36px;
+  height: 22px;
+  background: linear-gradient(135deg, #A18EE6, #EE99C2);
+  transform: rotate(-15deg);
+  animation: modalFloat 6s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.petal-3 {
+  top: 60%;
+  left: 6%;
+  width: 22px;
+  height: 14px;
+  background: linear-gradient(135deg, #EE99C2, #B5A5E8);
+  transform: rotate(45deg);
+  animation: modalFloat 4.5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+@keyframes modalFloat {
+  0% {
+    transform: translateY(0px) rotate(var(--rot, 25deg));
+  }
+  50% {
+    transform: translateY(-15px) rotate(calc(var(--rot, 25deg) + 15deg));
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--rot, 25deg));
+  }
+}
+
+/* Apply specific rotations for keys to not overwrite default rotate */
+.petal-1 { --rot: 25deg; }
+.petal-2 { --rot: -15deg; }
+.petal-3 { --rot: 45deg; }
+
+/* 2. Spinning Badge */
+.spinning-badge-wrap {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+}
+
+.spinning-badge {
+  width: 32px;
+  height: 32px;
+  display: block;
+  animation: badgeSpin 12s linear infinite;
+  user-select: none;
+}
+
+@keyframes badgeSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. Pulsing Glow Action Button */
+.btn-pulse-glow {
+  position: relative;
+  overflow: visible;
+  animation: btnPulse 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-pulse-glow:hover {
+  animation: btnPulseHover 1s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes btnPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(124, 92, 252, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(124, 92, 252, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 92, 252, 0);
+  }
+}
+
+@keyframes btnPulseHover {
+  0% {
+    transform: translateY(-2px) scale(1);
+    box-shadow: 0 4px 15px rgba(124, 92, 252, 0.4);
+  }
+  100% {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(124, 92, 252, 0.65);
+  }
 }
 
 /* --------------------------------------------------------------------------
