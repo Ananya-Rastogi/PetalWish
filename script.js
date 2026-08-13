@@ -12,6 +12,22 @@
   const INITIAL_TEMPLATES = [
     // HOUSEWARMING & BIRTHDAY ARTISTIC SERIES (INSPIRED BY PAPERLESS POST / GREETINGS ISLAND)
     {
+      id: 'birthday-zoe-13',
+      title: 'Zoe Turns 13 Invite',
+      category: 'Birthday',
+      style: 'Modern',
+      color: 'Pink',
+      orientation: 'Portrait',
+      tags: ['birthday', 'zoe', '13', 'pink', 'celebrate'],
+      bg: { type: 'solid', value: '#FFF0F2' },
+      elements: [
+        { id: 'el-zoe-t1', type: 'text', content: 'COME CELEBRATE!', fontSize: 14, fontFamily: 'Outfit', fontWeight: '700', color: '#C04E68', letterSpacing: 2, textAlign: 'center', x: 40, y: 80, width: 420, height: 30, rotation: 0 },
+        { id: 'el-zoe-t2', type: 'text', content: 'ZOE TURNS 13', fontSize: 32, fontFamily: 'Playfair Display', fontWeight: '900', color: '#C04E68', textAlign: 'center', x: 40, y: 140, width: 420, height: 60, rotation: 0 },
+        { id: 'el-zoe-t3', type: 'text', content: 'AT NAVY PIER\nRSVP 212-4484344', fontSize: 13, fontFamily: 'Inter', fontWeight: '600', color: '#C04E68', letterSpacing: 1, lineHeight: 1.6, textAlign: 'center', x: 40, y: 220, width: 420, height: 50, rotation: 0 },
+        { id: 'el-zoe-t4', type: 'text', content: 'HBD', fontSize: 14, fontFamily: 'Outfit', fontWeight: '700', color: '#C04E68', textAlign: 'center', x: 40, y: 300, width: 420, height: 30, rotation: 0 }
+      ]
+    },
+    {
       id: 'birthday-teacup',
       title: 'Sweet Sips & Cakes',
       category: 'Birthday',
@@ -189,6 +205,37 @@
 
     // WEDDING (6)
     {
+      id: 'wedding-rebecca-eli',
+      title: 'Rebecca & Eli Save the Date',
+      category: 'Wedding',
+      style: 'Elegant',
+      color: 'Pink',
+      orientation: 'Portrait',
+      tags: ['wedding', 'save the date', 'rebecca', 'eli', 'photo', 'pink'],
+      bg: { type: 'solid', value: '#FFF0F2' },
+      elements: [
+        { id: 'el-w-re-t1', type: 'text', content: 'SAVE the DATE', fontSize: 16, fontFamily: 'Outfit', fontWeight: '700', color: '#C04E68', letterSpacing: 3, textAlign: 'center', x: 40, y: 180, width: 420, height: 30, rotation: 0 },
+        { id: 'el-w-re-t2', type: 'text', content: 'REBECCA & ELI', fontSize: 26, fontFamily: 'Playfair Display', fontWeight: '700', color: '#C04E68', textAlign: 'center', x: 40, y: 220, width: 420, height: 40, rotation: 0 },
+        { id: 'el-w-re-t3', type: 'text', content: 'OCTOBER 19, 2027 • SAN DIEGO\nformal invitation to follow', fontSize: 12, fontFamily: 'Inter', fontWeight: '500', color: '#C04E68', letterSpacing: 1, lineHeight: 1.6, textAlign: 'center', x: 40, y: 280, width: 420, height: 50, rotation: 0 }
+      ]
+    },
+    {
+      id: 'wedding-lena-theo',
+      title: 'Lena & Theo Wedding Invitation',
+      category: 'Wedding',
+      style: 'Elegant',
+      color: 'Pink',
+      orientation: 'Portrait',
+      tags: ['wedding', 'invitation', 'lena', 'theo', 'pink'],
+      bg: { type: 'solid', value: '#FFFFFF' },
+      elements: [
+        { id: 'el-w-lt-t1', type: 'text', content: 'WITH JOY, YOU ARE INVITED TO\nTHE WEDDING OF', fontSize: 12, fontFamily: 'Outfit', fontWeight: '600', color: '#8C2D3A', letterSpacing: 2, lineHeight: 1.5, textAlign: 'center', x: 40, y: 80, width: 420, height: 40, rotation: 0 },
+        { id: 'el-w-lt-t2', type: 'text', content: 'Lena & Theo', fontSize: 36, fontFamily: 'Playfair Display', fontWeight: '700', fontStyle: 'italic', color: '#8C2D3A', textAlign: 'center', x: 40, y: 140, width: 420, height: 60, rotation: 0 },
+        { id: 'el-w-lt-t3', type: 'text', content: 'SATURDAY, AUGUST 15, 2026\nAT 5 O\'CLOCK IN THE EVENING\nMAGNOLIA WEDDING ESTATE\nATLANTA, GEORGIA', fontSize: 12, fontFamily: 'Inter', fontWeight: '600', color: '#8C2D3A', letterSpacing: 1, lineHeight: 1.8, textAlign: 'center', x: 40, y: 220, width: 420, height: 100, rotation: 0 },
+        { id: 'el-w-lt-t4', type: 'text', content: 'RECEPTION TO FOLLOW', fontSize: 12, fontFamily: 'Outfit', fontWeight: '700', color: '#8C2D3A', letterSpacing: 2, textAlign: 'center', x: 40, y: 340, width: 420, height: 30, rotation: 0 }
+      ]
+    },
+    {
       id: 'wedding-botanical',
       title: 'Ring Ceremony Invitation',
       category: 'Wedding',
@@ -288,6 +335,38 @@
     },
 
     // BABY SHOWER (4)
+    {
+      id: 'baby-little-honey',
+      title: 'A Little Honey Baby Shower',
+      category: 'Baby Shower',
+      style: 'Modern',
+      color: 'Neutral',
+      orientation: 'Portrait',
+      tags: ['baby', 'shower', 'honey', 'bee'],
+      bg: { type: 'solid', value: '#FFFFFF' },
+      elements: [
+        { id: 'el-b-lh-t1', type: 'text', content: 'let\'s celebrate!', fontSize: 12, fontFamily: 'Outfit', fontWeight: '600', color: '#6D541D', letterSpacing: 2, textAlign: 'center', x: 40, y: 70, width: 420, height: 30, rotation: 0 },
+        { id: 'el-b-lh-t2', type: 'text', content: 'a little honey', fontSize: 34, fontFamily: 'Playfair Display', fontWeight: '700', fontStyle: 'italic', color: '#6D541D', textAlign: 'center', x: 40, y: 110, width: 420, height: 50, rotation: 0 },
+        { id: 'el-b-lh-t3', type: 'text', content: 'is on the way?', fontSize: 16, fontFamily: 'Outfit', fontWeight: '500', color: '#6D541D', textAlign: 'center', x: 40, y: 170, width: 420, height: 30, rotation: 0 },
+        { id: 'el-b-lh-t4', type: 'text', content: 'JESSIE\'S BABY SHOWER\nSAT | AUGUST 15 | 2PM\n38 parkside drive, fresno\nrsvp to: dbaker@gmail.com\nregistered at target', fontSize: 11, fontFamily: 'Inter', fontWeight: '600', color: '#6D541D', letterSpacing: 0.5, lineHeight: 1.6, textAlign: 'center', x: 40, y: 220, width: 420, height: 120, rotation: 0 }
+      ]
+    },
+    {
+      id: 'baby-gender-reveal',
+      title: 'Gender Reveal Invitation',
+      category: 'Baby Shower',
+      style: 'Modern',
+      color: 'Multicolor',
+      orientation: 'Portrait',
+      tags: ['baby', 'shower', 'gender reveal', 'reveal'],
+      bg: { type: 'solid', value: '#FFFFFF' },
+      elements: [
+        { id: 'el-b-gr-t1', type: 'text', content: 'what will baby francis be?', fontSize: 14, fontFamily: 'Outfit', fontWeight: '600', color: '#006064', letterSpacing: 1, textAlign: 'center', x: 40, y: 60, width: 420, height: 30, rotation: 0 },
+        { id: 'el-b-gr-t2', type: 'text', content: 'JOIN US FOR A\ngender reveal party!', fontSize: 24, fontFamily: 'Playfair Display', fontWeight: '700', color: '#006064', lineHeight: 1.3, textAlign: 'center', x: 40, y: 110, width: 420, height: 70, rotation: 0 },
+        { id: 'el-b-gr-t3', type: 'text', content: 'FOR Baby Francis', fontSize: 14, fontFamily: 'Outfit', fontWeight: '600', color: '#006064', textAlign: 'center', x: 40, y: 190, width: 420, height: 30, rotation: 0 },
+        { id: 'el-b-gr-t4', type: 'text', content: 'SEP 25 | 2026\n23251 winwood drive\nclaremont, california\nregrets only to sarah\n616-254-8672', fontSize: 11, fontFamily: 'Inter', fontWeight: '500', color: '#006064', lineHeight: 1.6, textAlign: 'center', x: 40, y: 230, width: 420, height: 100, rotation: 0 }
+      ]
+    },
     {
       id: 'baby-neutral',
       title: 'Moon & Stars Baby Shower',
@@ -609,6 +688,7 @@
   const DOM = {
     // Views
     viewHome: document.getElementById('view-home'),
+    viewExplore: document.getElementById('view-explore'),
     viewDashboard: document.getElementById('view-dashboard'),
     viewRsvp: document.getElementById('view-rsvp'),
     viewEditor: document.getElementById('view-editor'),
@@ -2249,12 +2329,16 @@
   // --------------------------------------------------------------------------
   function switchView(viewName) {
     state.activeView = viewName;
-    [DOM.viewHome, DOM.viewDashboard, DOM.viewRsvp, DOM.viewEditor].forEach(view => {
-      view.classList.remove('active');
+    [DOM.viewHome, DOM.viewExplore, DOM.viewDashboard, DOM.viewRsvp, DOM.viewEditor].forEach(view => {
+      if (view) view.classList.remove('active');
     });
 
     if (viewName === 'home') {
       DOM.viewHome.classList.add('active');
+      window.scrollTo(0, 0);
+    } else if (viewName === 'explore') {
+      if (DOM.viewExplore) DOM.viewExplore.classList.add('active');
+      renderGallery();
       window.scrollTo(0, 0);
     } else if (viewName === 'dashboard') {
       DOM.viewDashboard.classList.add('active');
@@ -2362,9 +2446,7 @@
         document.querySelectorAll('.nav-link, .chip').forEach(b => {
           b.classList.toggle('active', b.getAttribute('data-category') === cat);
         });
-        if (state.activeView !== 'home') switchView('home');
-        renderGallery();
-        document.getElementById('explore-section').scrollIntoView({ behavior: 'smooth' });
+        switchView('explore');
       });
     });
 
@@ -2428,8 +2510,7 @@
     const heroExploreBtn = document.getElementById('hero-explore-btn');
     if (heroExploreBtn) {
       heroExploreBtn.addEventListener('click', () => {
-        if (state.activeView !== 'home') switchView('home');
-        document.getElementById('explore-section').scrollIntoView({ behavior: 'smooth' });
+        switchView('explore');
       });
     }
 
@@ -2437,10 +2518,43 @@
     const headerNavGallery = document.getElementById('header-nav-gallery');
     if (headerNavGallery) {
       headerNavGallery.addEventListener('click', () => {
-        if (state.activeView !== 'home') switchView('home');
-        document.getElementById('explore-section').scrollIntoView({ behavior: 'smooth' });
+        switchView('explore');
       });
     }
+
+    // Custom landing page category pill actions
+    document.querySelectorAll('.wish-pill-btn, .reason-grid-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-target-category');
+        if (cat) {
+          state.selectedCategory = cat;
+          document.querySelectorAll('.nav-link, .chip').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-category') === cat);
+          });
+          switchView('explore');
+        }
+      });
+    });
+
+    // Upload your own in reasons section
+    const reasonsUploadBtn = document.getElementById('reasons-upload-btn');
+    if (reasonsUploadBtn) {
+      reasonsUploadBtn.addEventListener('click', () => {
+        openEditorWithTemplate(state.templates[0]);
+      });
+    }
+
+    // Scroll Listener for Hero Visual rotation/scaling
+    window.addEventListener('scroll', () => {
+      const heroBg = document.querySelector('.new-hero-visual-bg');
+      if (heroBg) {
+        if (window.scrollY > 50) {
+          heroBg.classList.add('scrolled');
+        } else {
+          heroBg.classList.remove('scrolled');
+        }
+      }
+    });
 
     const headerNavStudio = document.getElementById('header-nav-studio');
     if (headerNavStudio) {
@@ -2603,6 +2717,14 @@
       if (useBtn) {
         e.stopPropagation();
         const id = useBtn.getAttribute('data-id');
+        const tpl = state.templates.find(t => t.id === id);
+        if (tpl) openEditorWithTemplate(tpl);
+        return;
+      }
+
+      const interactiveCard = e.target.closest('.homepage-interactive-card');
+      if (interactiveCard) {
+        const id = interactiveCard.getAttribute('data-template-id');
         const tpl = state.templates.find(t => t.id === id);
         if (tpl) openEditorWithTemplate(tpl);
         return;

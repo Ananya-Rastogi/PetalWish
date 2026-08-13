@@ -112,86 +112,33 @@
 
     <!-- VIEW 1: MAIN HOMEPAGE & TEMPLATE GALLERY -->
     <main class="app-view active" id="view-home">
-      <!-- HERO SECTION -->
-      <section class="hero-section">
-        <div class="hero-container">
-          <div class="hero-content">
-            <span class="hero-badge">Original Design Studio</span>
-            <h1 class="hero-title">Beautiful designs for life's special moments.</h1>
-            <p class="hero-description">
-              Create invitations, greeting cards and announcements with professionally designed templates you can make your own.
-            </p>
-            <div class="hero-actions">
-              <button class="btn-primary btn-large" id="hero-explore-btn">
-                <span>Explore Templates</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </button>
-              <button class="btn-outline btn-large" id="hero-create-btn">
-                <span>Create a Design</span>
-              </button>
-            </div>
-            <div class="hero-stats">
-              <div class="stat-item">
-                <span class="stat-num">30+</span>
-                <span class="stat-label">Designer Templates</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-item">
-                <span class="stat-num">100%</span>
-                <span class="stat-label">Free Customization</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-item">
-                <span class="stat-num">Instant</span>
-                <span class="stat-label">PNG Download & RSVPs</span>
-              </div>
-            </div>
+      <!-- NEW HERO SECTION -->
+      <section class="new-hero-section">
+        <div class="new-hero-container">
+          <div class="new-hero-content">
+            <h1 class="new-hero-title">Ready to <span class="highlight-pink">celebrate?</span></h1>
+            <p class="new-hero-subtitle">Life's a party, and it all starts with the perfect invite or card.</p>
           </div>
-
-          <!-- Hero Floating Colorful 3D Collage -->
-          <div class="hero-visual">
-            <div class="hero-glow-orb orb-purple"></div>
-            <div class="hero-glow-orb orb-pink"></div>
-            <div class="hero-collage">
-              <!-- Card 1: Luxury Dark Gold & Rose -->
-              <div class="collage-card card-1">
-                <div class="card-hero-inner dark-gold-theme">
-                  <div class="card-border-frame"></div>
-                  <span class="card-hero-tag text-gold">EXCLUSIVE INVITATION</span>
-                  <h3 class="card-hero-title text-white">Charlotte & William</h3>
-                  <div class="card-hero-divider gold-line"></div>
-                  <p class="card-hero-sub text-pink">CELEBRATE OUR MARRIAGE</p>
-                  <span class="card-hero-date text-gold">SATURDAY, OCT 24 • NEW YORK</span>
-                  <div class="card-floating-badge badge-gold">✨ Save the Date</div>
-                </div>
-              </div>
-
-              <!-- Card 2: Vibrant Pastel Birthday -->
-              <div class="collage-card card-2">
-                <div class="card-hero-inner pastel-pink-theme">
-                  <div class="card-arch-shape"></div>
-                  <span class="card-hero-tag text-purple">CELEBRATE</span>
-                  <h3 class="card-hero-title text-dark">Happy 30th Birthday</h3>
-                  <p class="card-hero-sub text-italic-purple">years of magic & joy</p>
-                  <div class="card-hero-divider purple-line"></div>
-                  <span class="card-hero-date text-dark">HONORING ALEXANDRA</span>
-                  <div class="card-floating-badge badge-purple">🎉 Birthday Gala</div>
-                </div>
-              </div>
-
-              <!-- Card 3: Soft Lavender Baby Shower -->
-              <div class="collage-card card-3">
-                <div class="card-hero-inner lavender-blue-theme">
-                  <div class="card-circle-shape"></div>
-                  <span class="card-hero-tag text-purple">WELCOME LITTLE ONE</span>
-                  <h3 class="card-hero-title text-dark">Baby Shower</h3>
-                  <div class="card-hero-divider purple-line"></div>
-                  <p class="card-hero-sub text-muted">HONORING EMMA MILLER</p>
-                  <span class="card-hero-date text-purple">SUNDAY, JULY 11 • 2 PM</span>
-                  <div class="card-floating-badge badge-pink">🍼 Baby Shower</div>
+          <div class="new-hero-visual-wrap">
+            <div class="new-hero-visual-bg">
+              <!-- Floating decorations -->
+              <span class="float-deco note-1">🎵</span>
+              <span class="float-deco note-2">🎶</span>
+              <span class="float-deco note-3">🎵</span>
+              <span class="float-deco balloon-1">🎈</span>
+              <span class="float-deco balloon-2">🎈</span>
+              <span class="float-deco star-1">⭐</span>
+              <span class="float-deco star-2">✨</span>
+              <span class="float-deco confetti-1">🎉</span>
+              
+              <!-- Card Preview -->
+              <div class="preview-card-frame homepage-interactive-card" data-template-id="birthday-zoe-13">
+                <div class="preview-card-inner">
+                  <div class="card-sparkles">✨ COME CELEBRATE! ✨</div>
+                  <div class="card-main-title">ZOE TURNS 13</div>
+                  <div class="card-details-line">AT NAVY PIER</div>
+                  <div class="card-details-line">RSVP 212-4484344</div>
+                  <div class="card-hbd-icon">🎂 HBD</div>
                 </div>
               </div>
             </div>
@@ -199,6 +146,222 @@
         </div>
       </section>
 
+      <!-- NEW TRENDING SECTION -->
+      <section class="new-trending-section">
+        <div class="new-section-header">
+          <h2>Explore what's <span class="highlight-pink">trending</span></h2>
+        </div>
+        <div class="trending-cards-grid">
+          <!-- Card 1 -->
+          <div class="trending-card-item pink-confetti-bg">
+            <div class="card-item-container">
+              <div class="trending-card-preview back-to-school-theme">
+                <div class="card-handwritten">BaCk 2 sChOoL PaRtY</div>
+                <div class="card-handwritten-sub">Sunday<br>SEPTEMBER 6TH<br>at 1:00 PM</div>
+                <div class="card-handwritten-footer">JACKSON'S BACKYARD,<br>789 GALA LANE</div>
+              </div>
+            </div>
+            <div class="trending-card-footer">
+              <span>Back to school</span>
+              <button class="fav-star-btn">★</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="trending-card-item pink-ribbons-bg">
+            <div class="card-item-container">
+              <div class="trending-card-preview housewarming-theme">
+                <div class="card-hw-title">Home is where the flowers bloom</div>
+                <div class="card-hw-body">JOIN US FOR A HOUSEWARMING PARTY IN HONOR OF THE HAWLEY FAMILY</div>
+                <div class="card-hw-footer">123.456.7890</div>
+              </div>
+            </div>
+            <div class="trending-card-footer">
+              <span>Housewarming parties</span>
+              <button class="fav-star-btn">★</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hidden/Legacy element to prevent JS errors -->
+        <div id="trending-track" class="hidden"></div>
+      </section>
+
+      <!-- NEW WISH & CELEBRATE SECTION -->
+      <section class="new-wish-section">
+        <div class="wish-container">
+          <div class="wish-left-collage">
+            <div class="collage-back-card">
+              <div class="cake-card-inner">
+                <div class="cake-title">Have the Cake and Eat it Too!</div>
+                <div class="cake-subtitle">JUNE 20, 2026 | 8:00 PM</div>
+              </div>
+            </div>
+            <div class="collage-front-card">
+              <div class="photo-card-inner">
+                <div class="photo-title">Chiara Bellini's 40th birthday party</div>
+                <div class="photo-date">JUNE 20, 2026 | 7:30 PM</div>
+              </div>
+            </div>
+          </div>
+          <div class="wish-right-content">
+            <h2 class="wish-title"><span class="highlight-orange">Make a wish</span> and celebrate with style</h2>
+            <div class="wish-actions">
+              <button class="wish-pill-btn" data-target-category="Birthday">
+                <span>Birthday invites</span>
+                <span class="arrow-circle">➔</span>
+              </button>
+              <button class="wish-pill-btn" data-target-category="Birthday">
+                <span>Birthday cards</span>
+                <span class="arrow-circle">➔</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW WEDDING SECTION -->
+      <section class="new-wedding-section">
+        <div class="wedding-container">
+          <div class="wedding-left-content">
+            <h2 class="wedding-title">Say <span class="highlight-pink">"I do"</span> to happily ever after</h2>
+            <div class="wedding-actions">
+              <button class="wish-pill-btn" data-target-category="Wedding">
+                <span>Wedding invites</span>
+                <span class="arrow-circle icon-pink">💒</span>
+              </button>
+              <button class="wish-pill-btn" data-target-category="Wedding">
+                <span>Engagement party</span>
+                <span class="arrow-circle icon-pink">💍</span>
+              </button>
+              <button class="wish-pill-btn" data-target-category="Wedding">
+                <span>Save the date</span>
+                <span class="arrow-circle icon-pink">📅</span>
+              </button>
+            </div>
+          </div>
+          <div class="wedding-right-collage">
+            <div class="wedding-visual-bg">
+              <div class="collage-back-card-wedding homepage-interactive-card" data-template-id="wedding-rebecca-eli">
+                <div class="wedding-card-back-inner">
+                  <div class="card-suit-top">R ♥</div>
+                  <div class="card-photo-placeholder">
+                    <svg viewBox="0 0 100 120" style="width:100%;height:100%;"><rect width="100%" height="100%" fill="#FCECE4"/><path d="M12,40 C12,40 30,10 50,10 C70,10 88,40 88,40" stroke="#E8A9C1" stroke-width="2" fill="none"/></svg>
+                  </div>
+                  <div class="wedding-txt-main">SAVE the DATE</div>
+                  <div class="wedding-txt-names">REBECCA & ELI</div>
+                  <div class="wedding-txt-date">OCTOBER 19, 2027 • SAN DIEGO</div>
+                  <div class="wedding-txt-note">formal invitation to follow</div>
+                  <div class="card-suit-bottom">R ♥</div>
+                </div>
+              </div>
+              <div class="collage-front-card-wedding homepage-interactive-card" data-template-id="wedding-lena-theo">
+                <div class="wedding-card-front-inner">
+                  <div class="front-small-txt">WITH JOY, YOU ARE INVITED TO THE WEDDING OF</div>
+                  <div class="front-title">Lena & Theo</div>
+                  <div class="front-details">SATURDAY, AUGUST 15, 2026 AT 5 O'CLOCK IN THE EVENING MAGNOLIA WEDDING ESTATE ATLANTA, GEORGIA</div>
+                  <div class="front-footer">RECEPTION TO FOLLOW</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW BABY SECTION -->
+      <section class="new-baby-section">
+        <div class="baby-container">
+          <div class="baby-left-collage">
+            <div class="baby-visual-bg">
+              <div class="collage-left-card-baby homepage-interactive-card" data-template-id="baby-little-honey">
+                <div class="baby-card-left-inner">
+                  <div class="baby-badge-top">let's celebrate!</div>
+                  <div class="baby-title-main">a little honey</div>
+                  <div class="baby-subtitle-main">is on the way?</div>
+                  <div class="baby-illustration-honey">🐝 🍯</div>
+                  <div class="baby-host-details">JESSIE'S BABY SHOWER</div>
+                  <div class="baby-date-details">SAT | AUGUST 15 | 2PM</div>
+                  <div class="baby-address-details">38 parkside drive, fresno rsvp to: dbaker@gmail.com registered at target</div>
+                </div>
+              </div>
+              <div class="collage-right-card-baby homepage-interactive-card" data-template-id="baby-gender-reveal">
+                <div class="baby-card-right-inner">
+                  <div class="baby-q-text">what will baby francis be?</div>
+                  <div class="baby-hearts-graphic">💙 💗</div>
+                  <div class="baby-event-type">JOIN US FOR A gender reveal party!</div>
+                  <div class="baby-for-txt">FOR Baby Francis</div>
+                  <div class="baby-date-right">SEP 25 | 2026 23251 winwood drive claremont, california regrets only to sarah 616-254-8672</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="baby-right-content">
+            <h2 class="baby-title">Welcome <span class="highlight-cyan">tiny</span> treasures</h2>
+            <div class="baby-actions">
+              <button class="wish-pill-btn" data-target-category="Baby Shower">
+                <span>Baby shower</span>
+                <span class="arrow-circle icon-cyan">🎁</span>
+              </button>
+              <button class="wish-pill-btn" data-target-category="Baby Shower">
+                <span>Gender reveal</span>
+                <span class="arrow-circle icon-cyan">🚼</span>
+              </button>
+              <button class="wish-pill-btn" data-target-category="Baby Shower">
+                <span>Baptism</span>
+                <span class="arrow-circle icon-cyan">✝</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEW REASONS SECTION -->
+      <section class="new-reasons-section">
+        <div class="reasons-container">
+          <!-- Fan of Cards -->
+          <div class="reasons-fan-container">
+            <div class="fan-card card-f1"></div>
+            <div class="fan-card card-f2"></div>
+            <div class="fan-card card-f3"></div>
+            <div class="fan-card card-f4"></div>
+            <div class="fan-card card-f5"></div>
+            <div class="fan-card card-f6"></div>
+          </div>
+          
+          <h2 class="reasons-title"><span class="highlight-blue">More reasons</span> to celebrate</h2>
+          
+          <div class="reasons-grid">
+            <button class="reason-grid-btn" data-target-category="Party">
+              <span>Housewarming</span>
+              <span class="icon-circle icon-purple">🔑</span>
+            </button>
+            <button class="reason-grid-btn" data-target-category="Birthday">
+              <span>Milestone birthdays</span>
+              <span class="icon-circle icon-pink">🎂</span>
+            </button>
+            <button class="reason-grid-btn" data-target-category="Baby Shower">
+              <span>Birth announcements</span>
+              <span class="icon-circle icon-cyan">🍼</span>
+            </button>
+            <button class="reason-grid-btn" data-target-category="Anniversary">
+              <span>Anniversary parties</span>
+              <span class="icon-circle icon-orange">💍</span>
+            </button>
+            <button class="reason-grid-btn" data-target-category="Party">
+              <span>Business events</span>
+              <span class="icon-circle icon-blue">💼</span>
+            </button>
+            <button class="reason-grid-btn" id="reasons-upload-btn">
+              <span>Upload your own</span>
+              <span class="icon-circle icon-green">➕</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- VIEW 1.5: DEDICATED TEMPLATE GALLERY EXPLORE VIEW -->
+    <main class="app-view" id="view-explore">
       <!-- TEMPLATE SEARCH & EXPLORE SECTION -->
       <section class="explore-section" id="explore-section">
         <div class="section-header center">
@@ -318,34 +481,6 @@
           <h3>No designs found</h3>
           <p>We couldn't find any templates matching your search filters. Try adjusting your query or resetting filters.</p>
           <button class="btn-primary" id="empty-clear-btn">Clear Search & Filters</button>
-        </div>
-      </section>
-
-      <!-- TRENDING DESIGNS CAROUSEL -->
-      <section class="trending-section">
-        <div class="section-header flex-between">
-          <div>
-            <span class="section-tag">Handpicked Collection</span>
-            <h2 class="section-title">Trending Designs</h2>
-          </div>
-          <div class="carousel-arrows">
-            <button class="arrow-btn" id="trending-prev" aria-label="Previous">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button class="arrow-btn" id="trending-next" aria-label="Next">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
-          </div>
-        </div>
-        
-        <div class="trending-carousel-wrap">
-          <div class="trending-track" id="trending-track">
-            <!-- Dynamic elements populated JS -->
-          </div>
         </div>
       </section>
 

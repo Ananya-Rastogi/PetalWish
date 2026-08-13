@@ -3210,3 +3210,940 @@ img {
   font-weight: 600;
   border-radius: var(--radius-full);
 }
+
+/* ==========================================================================
+   NEW HOMEPAGE REDESIGN STYLES
+   ========================================================================== */
+
+/* Colors & Highlights */
+.highlight-pink {
+  color: #E8A9C1;
+}
+.highlight-orange {
+  color: #F88F6D;
+}
+.highlight-blue {
+  color: #7C5CFC;
+}
+
+/* 1. New Hero Section */
+.new-hero-section {
+  padding: 80px 24px;
+  background-color: #FFFFFF;
+}
+
+.new-hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.new-hero-content {
+  max-width: 500px;
+}
+
+.new-hero-title {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin-bottom: 24px;
+}
+
+.new-hero-subtitle {
+  font-size: 1.35rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.new-hero-visual-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-hero-visual-bg {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  background-color: #FEECEB;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Zoom/rotate effect on scroll */
+.new-hero-visual-bg.scrolled {
+  transform: scale(1.08) rotate(3deg);
+}
+
+/* Floating Decorations */
+.float-deco {
+  position: absolute;
+  font-size: 2rem;
+  user-select: none;
+  animation: floatEffect 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatEffect {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-15px) rotate(10deg); }
+}
+
+.note-1 { top: 40px; left: 40px; animation-delay: 0s; font-size: 2.2rem; }
+.note-2 { bottom: 50px; right: 50px; animation-delay: 1.5s; font-size: 1.8rem; }
+.note-3 { top: 120px; right: 40px; animation-delay: 0.8s; font-size: 1.5rem; }
+.balloon-1 { top: 220px; left: 30px; animation-delay: 2s; font-size: 2.5rem; }
+.balloon-2 { top: 80px; right: 120px; animation-delay: 0.4s; font-size: 2.2rem; }
+.star-1 { bottom: 120px; left: 60px; animation-delay: 1.2s; }
+.star-2 { top: 320px; right: 80px; animation-delay: 2.5s; }
+.confetti-1 { bottom: 40px; left: 160px; animation-delay: 1.8s; }
+
+/* Preview Card */
+.preview-card-frame {
+  width: 250px;
+  height: 350px;
+  background-color: #FFF0F2;
+  border-radius: 12px;
+  padding: 24px 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  z-index: 5;
+  transform: rotate(-4deg);
+  transition: transform 0.4s ease;
+}
+
+.preview-card-frame:hover {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.preview-card-inner {
+  height: 100%;
+  border: 2px solid #E8A9C1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px;
+  color: #C04E68;
+}
+
+.card-sparkles {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.card-main-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.card-details-line {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+}
+
+.card-hbd-icon {
+  margin-top: 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background-color: #FFE2E7;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* 2. New Trending Section */
+.new-trending-section {
+  padding: 80px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.new-section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.new-section-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--charcoal);
+}
+
+.trending-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.trending-card-item {
+  border-radius: 24px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.trending-card-item:hover {
+  transform: translateY(-8px);
+}
+
+.pink-confetti-bg {
+  background-color: #FFF2F4;
+  background-image: radial-gradient(#F8CCD3 15%, transparent 16%), radial-gradient(#F8CCD3 15%, transparent 16%);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.pink-ribbons-bg {
+  background-color: #FFF2F4;
+  background-image: linear-gradient(45deg, #FBE3E7 25%, transparent 25%), linear-gradient(-45deg, #FBE3E7 25%, transparent 25%);
+  background-size: 40px 40px;
+}
+
+.card-item-container {
+  width: 220px;
+  height: 310px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.trending-card-preview {
+  height: 100%;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.back-to-school-theme {
+  border: 1px solid #78909C;
+  background-color: #ECEFF1;
+  background-image: linear-gradient(#CFD8DC 1px, transparent 1px), linear-gradient(90deg, #CFD8DC 1px, transparent 1px);
+  background-size: 15px 15px;
+  color: #37474F;
+}
+
+.card-handwritten {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.card-handwritten-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-handwritten-footer {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.housewarming-theme {
+  border: 1px dashed #5A8F69;
+  background-color: #FAFDFB;
+  color: #2E5A39;
+}
+
+.card-hw-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.card-hw-body {
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.card-hw-footer {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.trending-card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.trending-card-footer span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.fav-star-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #D792AC;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.fav-star-btn:hover {
+  color: #7C5CFC;
+}
+
+/* 3. New Wish Section */
+.new-wish-section {
+  padding: 80px 24px;
+  background-color: #FFFFFF;
+}
+
+.wish-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.wish-left-collage {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collage-back-card {
+  position: absolute;
+  width: 230px;
+  height: 320px;
+  background-color: #FCECE4;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  transform: translate(-50px, -20px) rotate(-8deg);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.cake-card-inner {
+  height: 100%;
+  border: 1.5px solid #F88F6D;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #A0522D;
+}
+
+.cake-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cake-subtitle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.collage-front-card {
+  position: absolute;
+  width: 230px;
+  height: 320px;
+  background-color: #FFF0F2;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  transform: translate(40px, 20px) rotate(4deg);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  z-index: 2;
+}
+
+.photo-card-inner {
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid #E8A9C1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background-color: #FDF4F5;
+  color: #C04E68;
+}
+
+.photo-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.photo-date {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.wish-right-content {
+  max-width: 480px;
+}
+
+.wish-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+
+.wish-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wish-pill-btn {
+  background-color: #F5F5F7;
+  border-radius: 40px;
+  padding: 16px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--charcoal);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.wish-pill-btn:hover {
+  background-color: #EDEAF4;
+  color: var(--purple-primary);
+  transform: translateX(4px);
+}
+
+.arrow-circle {
+  width: 32px;
+  height: 32px;
+  background-color: #F88F6D;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+/* 4. New Reasons Section */
+.new-reasons-section {
+  padding: 100px 24px;
+  background-color: #F5F5F7;
+  text-align: center;
+}
+
+.reasons-fan-container {
+  position: relative;
+  height: 180px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.fan-card {
+  position: absolute;
+  width: 90px;
+  height: 120px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  background-size: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-f1 { background-color: #FFD3E8; left: calc(50% - 180px); transform: rotate(-25deg); }
+.card-f2 { background-color: #E8DDFF; left: calc(50% - 110px); transform: rotate(-15deg); }
+.card-f3 { background-color: #D6EFFF; left: calc(50% - 40px); transform: rotate(-5deg); }
+.card-f4 { background-color: #E2F3E6; left: calc(50% + 30px); transform: rotate(5deg); }
+.card-f5 { background-color: #FFF0D6; left: calc(50% + 100px); transform: rotate(15deg); }
+.card-f6 { background-color: #FEECEB; left: calc(50% + 170px); transform: rotate(25deg); }
+
+.reasons-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 48px;
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.reason-grid-btn {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--charcoal);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.reason-grid-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.icon-purple { background-color: #EDEAF4; }
+.icon-pink { background-color: #FFF2F4; }
+.icon-cyan { background-color: #E0F7FA; }
+.icon-orange { background-color: #FFF3E0; }
+.icon-blue { background-color: #E3F2FD; }
+.icon-green { background-color: #E8F5E9; }
+
+/* 5. New Wedding Section */
+.new-wedding-section {
+  padding: 80px 24px;
+  background-color: #FFFFFF;
+}
+
+.wedding-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.wedding-left-content {
+  max-width: 480px;
+}
+
+.wedding-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+
+.wedding-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wedding-right-collage {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wedding-visual-bg {
+  position: relative;
+  width: 460px;
+  height: 400px;
+  background-color: #FFF2F4;
+  border-radius: 40px;
+  background-image: radial-gradient(#F8CCD3 15%, transparent 16%);
+  background-size: 30px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+
+.collage-back-card-wedding {
+  position: absolute;
+  width: 210px;
+  height: 290px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-md);
+  transform: translate(-45px, -15px) rotate(-6deg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.wedding-card-back-inner {
+  height: 100%;
+  border: 1px solid #E8A9C1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  color: #C04E68;
+}
+
+.card-suit-top {
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-suit-bottom {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card-photo-placeholder {
+  width: 70px;
+  height: 85px;
+  margin: 4px 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.wedding-txt-main {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.wedding-txt-names {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.wedding-txt-date {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.wedding-txt-note {
+  font-size: 0.52rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.collage-front-card-wedding {
+  position: absolute;
+  width: 210px;
+  height: 290px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+  transform: translate(55px, 25px) rotate(4deg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+.wedding-card-front-inner {
+  height: 100%;
+  border: 1px solid #D87882;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 12px;
+  color: #8C2D3A;
+}
+
+.front-small-txt {
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.front-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.front-details {
+  font-size: 0.52rem;
+  line-height: 1.5;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.front-footer {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* 6. New Baby Section */
+.new-baby-section {
+  padding: 80px 24px;
+  background-color: #F8FDFA;
+}
+
+.baby-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.baby-right-content {
+  max-width: 480px;
+}
+
+.baby-title {
+  font-family: var(--font-serif);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+
+.highlight-cyan {
+  color: #26C6DA;
+}
+
+.baby-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.baby-left-collage {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baby-visual-bg {
+  position: relative;
+  width: 460px;
+  height: 400px;
+  background-color: #E0F7FA;
+  border-radius: 40px;
+  background-image: radial-gradient(#B2EBF2 15%, transparent 16%);
+  background-size: 30px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+
+.collage-left-card-baby {
+  position: absolute;
+  width: 210px;
+  height: 290px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-md);
+  transform: translate(-55px, -15px) rotate(-4deg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.baby-card-left-inner {
+  height: 100%;
+  border: 1px dashed #B88E2F;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  color: #6D541D;
+  text-align: center;
+}
+
+.baby-badge-top {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.baby-title-main {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.baby-subtitle-main {
+  font-size: 0.68rem;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.baby-illustration-honey {
+  font-size: 1.4rem;
+}
+
+.baby-host-details {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.baby-date-details {
+  font-size: 0.58rem;
+  font-weight: 600;
+}
+
+.baby-address-details {
+  font-size: 0.48rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.collage-right-card-baby {
+  position: absolute;
+  width: 210px;
+  height: 290px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: var(--shadow-lg);
+  transform: translate(45px, 25px) rotate(6deg);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 2;
+}
+
+.baby-card-right-inner {
+  height: 100%;
+  border: 1px solid #4DD0E1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+  color: #006064;
+}
+
+.baby-q-text {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.baby-hearts-graphic {
+  font-size: 1.5rem;
+}
+
+.baby-event-type {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.baby-for-txt {
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.baby-date-right {
+  font-size: 0.48rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.icon-cyan {
+  background-color: #E0F7FA;
+}
+
+.bg-cyan-color {
+  background-color: #00BCD4;
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .new-hero-container,
+  .wish-container,
+  .wedding-container,
+  .baby-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  
+  .new-hero-content,
+  .wish-right-content,
+  .wedding-left-content,
+  .baby-right-content {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .trending-cards-grid,
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
