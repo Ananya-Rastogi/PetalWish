@@ -338,7 +338,7 @@
     {
       id: 'baby-little-honey',
       title: 'A Little Honey Baby Shower',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Modern',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -354,7 +354,7 @@
     {
       id: 'baby-gender-reveal',
       title: 'Gender Reveal Invitation',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Modern',
       color: 'Multicolor',
       orientation: 'Portrait',
@@ -370,7 +370,7 @@
     {
       id: 'baby-neutral',
       title: 'Moon & Stars Baby Shower',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Modern',
       color: 'Green',
       orientation: 'Portrait',
@@ -386,7 +386,7 @@
     {
       id: 'baby-floral',
       title: 'Sweet Baby Girl Shower',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Floral',
       color: 'Pink',
       orientation: 'Portrait',
@@ -401,7 +401,7 @@
     {
       id: 'baby-minimal',
       title: 'Minimalist Stork Announcement',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Minimal',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -416,7 +416,7 @@
     {
       id: 'baby-announcement',
       title: 'Baby Mobile Announcement',
-      category: 'Baby Shower',
+      category: 'Baby & Kids',
       style: 'Modern',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -433,7 +433,7 @@
     {
       id: 'grad-modern',
       title: 'Graduation Feast Celebration',
-      category: 'Graduation',
+      category: 'Party',
       style: 'Modern',
       color: 'Green',
       orientation: 'Portrait',
@@ -449,7 +449,7 @@
     {
       id: 'grad-elegant',
       title: 'Elegant Cap Graduation',
-      category: 'Graduation',
+      category: 'Party',
       style: 'Elegant',
       color: 'Black',
       orientation: 'Portrait',
@@ -465,7 +465,7 @@
     {
       id: 'grad-photo',
       title: 'Brunch Graduation Celebration',
-      category: 'Graduation',
+      category: 'Party',
       style: 'Editorial',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -480,7 +480,7 @@
     {
       id: 'grad-minimal',
       title: 'Garden Graduation Party',
-      category: 'Graduation',
+      category: 'Party',
       style: 'Minimal',
       color: 'Green',
       orientation: 'Portrait',
@@ -497,7 +497,7 @@
     {
       id: 'anniv-elegant',
       title: 'Anniversary Wine Dinner',
-      category: 'Anniversary',
+      category: 'Party',
       style: 'Elegant',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -512,7 +512,7 @@
     {
       id: 'anniv-modern',
       title: 'Still In Love Anniversary',
-      category: 'Anniversary',
+      category: 'Party',
       style: 'Modern',
       color: 'Pink',
       orientation: 'Portrait',
@@ -527,7 +527,7 @@
     {
       id: 'anniv-minimal',
       title: '50 Golden Years',
-      category: 'Anniversary',
+      category: 'Party',
       style: 'Minimal',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -544,7 +544,7 @@
     {
       id: 'thankyou-floral',
       title: 'Floral Envelope Thank You',
-      category: 'Thank You',
+      category: 'Party',
       style: 'Botanical',
       color: 'Green',
       orientation: 'Portrait',
@@ -559,7 +559,7 @@
     {
       id: 'congrats-luxury',
       title: 'Luxury Champagne Celebration',
-      category: 'Congratulations',
+      category: 'Party',
       style: 'Luxury',
       color: 'Black',
       orientation: 'Portrait',
@@ -590,7 +590,7 @@
     {
       id: 'dinner-editorial',
       title: 'Autumn Supper Soiree',
-      category: 'Invitations',
+      category: 'Party',
       style: 'Editorial',
       color: 'Neutral',
       orientation: 'Portrait',
@@ -620,7 +620,7 @@
     {
       id: 'holiday-gala',
       title: 'Holiday Feast Celebration',
-      category: 'Holidays',
+      category: 'Party',
       style: 'Botanical',
       color: 'Green',
       orientation: 'Portrait',
@@ -635,7 +635,7 @@
     {
       id: 'celestial-gala',
       title: 'Evening Under The Stars',
-      category: 'Invitations',
+      category: 'Party',
       style: 'Luxury',
       color: 'Black',
       orientation: 'Portrait',
@@ -703,6 +703,8 @@
     templateGrid: document.getElementById('template-grid'),
     searchInput: document.getElementById('template-search-input'),
     clearSearchBtn: document.getElementById('clear-search-btn'),
+    navbarSearchInput: document.getElementById('navbar-search-input'),
+    navbarClearSearchBtn: document.getElementById('navbar-clear-search-btn'),
     categoryChips: document.getElementById('category-chips'),
     resultsCountText: document.getElementById('results-count-text'),
     resetFiltersBtn: document.getElementById('reset-filters-btn'),
@@ -1265,27 +1267,29 @@
     }).join('');
 
     return `
-      <div class="template-card" data-id="${template.id}">
+      <div class="template-card" data-id="${template.id}" data-category="${template.category}">
         <div class="card-preview-wrap">
-          <div class="card-canvas-thumb" style="${bgStyle}">
-            ${elementsMarkup}
+          <div class="card-canvas-container">
+            <div class="card-canvas-thumb" style="${bgStyle}">
+              ${elementsMarkup}
+            </div>
           </div>
           <div class="card-overlay">
-            <div class="overlay-top">
-              <button class="btn-fav-card ${isFav ? 'favorited' : ''}" data-id="${template.id}" title="Save Favorite" aria-label="Favorite">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-              </button>
-            </div>
             <div class="overlay-bottom">
               <button class="btn-primary btn-sm btn-use-template" data-id="${template.id}">Use Template</button>
             </div>
           </div>
         </div>
         <div class="card-details">
-          <span class="card-category-pill">${template.category}</span>
-          <h3 class="card-title">${template.title}</h3>
+          <div class="card-details-left">
+            <span class="card-category-pill">${template.category}</span>
+            <h3 class="card-title">${template.title}</h3>
+          </div>
+          <button class="btn-fav-card ${isFav ? 'favorited' : ''}" data-id="${template.id}" title="Save Favorite" aria-label="Favorite">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+          </button>
         </div>
       </div>
     `;
@@ -1298,9 +1302,7 @@
     return state.templates.filter(tpl => {
       // Category Chip Filter
       if (state.selectedCategory !== 'All') {
-        if (state.selectedCategory === 'Invitations' && !tpl.tags.includes('invitation') && tpl.category !== 'Invitations') return false;
-        if (state.selectedCategory === 'Greeting Cards' && !tpl.tags.includes('greeting') && tpl.category !== 'Greeting Cards') return false;
-        if (state.selectedCategory !== 'Invitations' && state.selectedCategory !== 'Greeting Cards' && tpl.category !== state.selectedCategory) return false;
+        if (tpl.category !== state.selectedCategory) return false;
       }
 
       // Search Query
@@ -1349,12 +1351,13 @@
     requestAnimationFrame(scaleCardThumbs);
   }
 
-  // Scale every .card-canvas-thumb (500x700 canvas) to fill its .card-preview-wrap
+  // Scale every .card-canvas-thumb (500x700 canvas) to fill its .card-canvas-container
   function scaleCardThumbs() {
     document.querySelectorAll('.card-preview-wrap').forEach(wrap => {
+      const container = wrap.querySelector('.card-canvas-container') || wrap;
       const thumb = wrap.querySelector('.card-canvas-thumb');
       if (!thumb) return;
-      const scaleX = wrap.clientWidth / 500;
+      const scaleX = container.clientWidth / 500;
       thumb.style.transform = `scale(${scaleX})`;
     });
   }
@@ -2441,8 +2444,31 @@
     // Navigation Routing
     document.querySelectorAll('[data-category]').forEach(btn => {
       btn.addEventListener('click', (e) => {
+        e.preventDefault();
         const cat = btn.getAttribute('data-category');
+        const subcat = btn.getAttribute('data-subcategory');
+        
         state.selectedCategory = cat;
+        if (subcat) {
+          state.searchQuery = subcat;
+          DOM.searchInput.value = subcat;
+          if (DOM.navbarSearchInput) {
+            DOM.navbarSearchInput.value = subcat;
+            if (DOM.navbarClearSearchBtn) {
+              DOM.navbarClearSearchBtn.classList.toggle('hidden', !subcat);
+            }
+          }
+        } else {
+          state.searchQuery = '';
+          DOM.searchInput.value = '';
+          if (DOM.navbarSearchInput) {
+            DOM.navbarSearchInput.value = '';
+            if (DOM.navbarClearSearchBtn) {
+              DOM.navbarClearSearchBtn.classList.add('hidden');
+            }
+          }
+        }
+
         document.querySelectorAll('.nav-link, .chip').forEach(b => {
           b.classList.toggle('active', b.getAttribute('data-category') === cat);
         });
@@ -2450,14 +2476,66 @@
       });
     });
 
+    // Navbar search input events
+    if (DOM.navbarSearchInput) {
+      DOM.navbarSearchInput.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        state.searchQuery = val;
+        
+        // Sync gallery input
+        DOM.searchInput.value = val;
+        
+        // Toggle navbar clear btn
+        if (DOM.navbarClearSearchBtn) {
+          DOM.navbarClearSearchBtn.classList.toggle('hidden', !val);
+        }
+        
+        if (DOM.clearSearchBtn) {
+          DOM.clearSearchBtn.classList.toggle('hidden', !val);
+        }
+        
+        if (state.activeView !== 'explore') {
+          switchView('explore');
+        } else {
+          renderGallery();
+        }
+      });
+    }
+
+    if (DOM.navbarClearSearchBtn) {
+      DOM.navbarClearSearchBtn.addEventListener('click', () => {
+        state.searchQuery = '';
+        DOM.navbarSearchInput.value = '';
+        DOM.searchInput.value = '';
+        DOM.navbarClearSearchBtn.classList.add('hidden');
+        if (DOM.clearSearchBtn) {
+          DOM.clearSearchBtn.classList.add('hidden');
+        }
+        renderGallery();
+      });
+    }
+
     DOM.searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value.trim();
+      const val = e.target.value.trim();
+      state.searchQuery = val;
+      if (DOM.navbarSearchInput) {
+        DOM.navbarSearchInput.value = val;
+        if (DOM.navbarClearSearchBtn) {
+          DOM.navbarClearSearchBtn.classList.toggle('hidden', !val);
+        }
+      }
       renderGallery();
     });
 
     DOM.clearSearchBtn.addEventListener('click', () => {
       state.searchQuery = '';
       DOM.searchInput.value = '';
+      if (DOM.navbarSearchInput) {
+        DOM.navbarSearchInput.value = '';
+        if (DOM.navbarClearSearchBtn) {
+          DOM.navbarClearSearchBtn.classList.add('hidden');
+        }
+      }
       renderGallery();
     });
 
@@ -2466,10 +2544,19 @@
       state.selectedCategory = 'All';
       state.filters = { occasion: 'All', style: 'All', color: 'All', orientation: 'All' };
       DOM.searchInput.value = '';
+      if (DOM.navbarSearchInput) {
+        DOM.navbarSearchInput.value = '';
+        if (DOM.navbarClearSearchBtn) {
+          DOM.navbarClearSearchBtn.classList.add('hidden');
+        }
+      }
       DOM.filterOccasion.value = 'All';
       DOM.filterStyle.value = 'All';
       DOM.filterColor.value = 'All';
       DOM.filterOrientation.value = 'All';
+      document.querySelectorAll('.nav-link, .chip').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-category') === 'All');
+      });
       renderGallery();
     });
 
@@ -2652,11 +2739,17 @@
       });
     }
 
-    document.getElementById('nav-dashboard-btn').addEventListener('click', () => switchView('dashboard'));
-    document.getElementById('mobile-dashboard-btn').addEventListener('click', () => {
-      DOM.mobileMenu.classList.remove('open');
-      switchView('dashboard');
-    });
+    const navDashboardBtn = document.getElementById('nav-dashboard-btn');
+    if (navDashboardBtn) {
+      navDashboardBtn.addEventListener('click', () => switchView('dashboard'));
+    }
+    const mobileDashboardBtn = document.getElementById('mobile-dashboard-btn');
+    if (mobileDashboardBtn) {
+      mobileDashboardBtn.addEventListener('click', () => {
+        DOM.mobileMenu.classList.remove('open');
+        switchView('dashboard');
+      });
+    }
 
     document.getElementById('nav-fav-btn').addEventListener('click', () => {
       switchView('dashboard');
@@ -2683,10 +2776,13 @@
     });
 
     document.getElementById('dash-nav-rsvp').addEventListener('click', () => switchView('rsvp'));
-    document.getElementById('mobile-rsvp-btn').addEventListener('click', () => {
-      DOM.mobileMenu.classList.remove('open');
-      switchView('rsvp');
-    });
+    const mobileRsvpBtn = document.getElementById('mobile-rsvp-btn');
+    if (mobileRsvpBtn) {
+      mobileRsvpBtn.addEventListener('click', () => {
+        DOM.mobileMenu.classList.remove('open');
+        switchView('rsvp');
+      });
+    }
 
     document.getElementById('dash-nav-back').addEventListener('click', () => switchView('home'));
     document.getElementById('dash-create-btn').addEventListener('click', () => openEditorWithTemplate(state.templates[0]));

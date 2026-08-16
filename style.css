@@ -281,7 +281,7 @@ img {
 .navbar-container {
   max-width: 1380px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 16px 24px; /* Taller navbar for more breathing room */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -296,21 +296,21 @@ img {
 }
 
 .logo-icon {
-  width: 36px;
-  height: 36px;
+  width: 44px; /* Slightly larger logo */
+  height: 44px;
   object-fit: cover;
   object-position: 50% 16%;
-  transform: scale(1.6);
+  transform: scale(1.5);
   transition: transform var(--transition-bounce);
 }
 
 .brand-logo:hover .logo-icon {
-  transform: scale(1.7) rotate(-6deg);
+  transform: scale(1.6) rotate(-6deg);
 }
 
 .brand-name {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.55rem; /* Slightly larger brand name text */
   font-weight: 700;
   color: var(--charcoal);
   letter-spacing: -0.5px;
@@ -319,16 +319,17 @@ img {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
 }
 
 .nav-link {
-  padding: 8px 14px;
-  font-size: 0.925rem;
-  font-weight: 500;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--text-muted);
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -345,7 +346,147 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+}
+
+/* Mega Dropdown Menus (Greetings Island Style) */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  width: max-content;
+  min-width: 450px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 24px 32px;
+  display: flex;
+  gap: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-smooth), transform var(--transition-smooth), visibility var(--transition-smooth);
+  z-index: 1000;
+  margin-top: 10px;
+}
+
+/* Hover bridge to prevent closing on gap transition */
+.mega-menu::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+}
+
+.nav-item-dropdown:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.mega-menu-column {
+  flex: 1;
+  min-width: 160px;
+}
+
+.mega-menu-column h4 {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--purple-primary);
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+  text-align: left;
+}
+
+.mega-menu-column ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mega-menu-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  display: block;
+  padding: 2px 0;
+  text-align: left;
+}
+
+.mega-menu-link:hover {
+  color: var(--purple-hover);
+  transform: translateX(4px);
+}
+
+/* Header Navbar Search Bar */
+.header-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  transition: all var(--transition-smooth);
+  width: 180px;
+  height: 38px;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-search-bar:focus-within {
+  border-color: var(--purple-primary);
+  box-shadow: 0 4px 12px rgba(124, 92, 252, 0.1);
+  width: 250px;
+}
+
+.search-icon-nav {
+  color: var(--text-light);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+#navbar-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  color: var(--charcoal);
+  background: transparent;
+  padding: 4px 0;
+}
+
+#navbar-search-input::placeholder {
+  color: var(--text-light);
+}
+
+.clear-search-btn-nav {
+  padding: 4px;
+  color: var(--text-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.clear-search-btn-nav:hover {
+  color: var(--charcoal);
 }
 
 /* Mobile Hamburger Menu */
@@ -987,29 +1128,66 @@ img {
 
 .template-card {
   background-color: var(--bg-surface);
-  border-radius: var(--radius-md);
+  border-radius: 20px; /* Softer modern corners */
   border: 1px solid var(--border-color);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all var(--transition-smooth);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 .template-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(124, 92, 252, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: rgba(124, 92, 252, 0.25);
 }
 
 .card-preview-wrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 5 / 7;
-  background-color: var(--bg-subtle);
+  aspect-ratio: 1 / 1; /* Premium square presentation cards */
+  background-color: #FAF8F5; /* Delicate off-white warm color */
   overflow: hidden;
   cursor: pointer;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+/* Category-specific soft colors to enhance editorial presentation */
+.template-card[data-category="Wedding"] .card-preview-wrap {
+  background-color: #FDF2F4; /* Soft rose petals */
+}
+.template-card[data-category="Birthday"] .card-preview-wrap {
+  background-color: #FAF4E8; /* Soft champagne toast */
+}
+.template-card[data-category="Baby & Kids"] .card-preview-wrap {
+  background-color: #EBF8FA; /* Soft clean mint/sky */
+}
+.template-card[data-category="Party"] .card-preview-wrap {
+  background-color: #F1EFF7; /* Soft aesthetic lavender */
+}
+
+.card-canvas-container {
+  width: auto;
+  height: 100%;
+  aspect-ratio: 5 / 7;
+  position: relative;
+  border-radius: 8px; /* Soft corners for physical invite cards */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  background-color: #FFFFFF;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.template-card:hover .card-canvas-container {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .card-canvas-thumb {
@@ -1019,7 +1197,6 @@ img {
   top: 0;
   left: 0;
   transform-origin: top left;
-  /* Scale set by JS via style.transform after card renders */
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1109,26 +1286,30 @@ img {
 }
 
 .btn-fav-card {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--charcoal);
+  background-color: var(--bg-subtle);
+  color: var(--text-light);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
 }
 
 .btn-fav-card:hover {
-  background-color: #FFFFFF;
+  background-color: #FFF0F2;
   color: #E63946;
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .btn-fav-card.favorited {
   color: #E63946;
-  background-color: #FFFFFF;
+  background-color: #FFF0F2;
+  border-color: transparent;
 }
 
 .overlay-bottom {
@@ -1136,20 +1317,32 @@ img {
 }
 
 .card-details {
-  padding: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-color);
+}
+
+.card-details-left {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
+  flex: 1;
 }
 
 .card-title {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--charcoal);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.2px;
 }
 
 .card-meta {
@@ -1161,10 +1354,16 @@ img {
 }
 
 .card-category-pill {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
+  color: var(--text-light);
+  transition: color var(--transition-fast);
+}
+
+.template-card:hover .card-category-pill {
   color: var(--purple-primary);
 }
 
@@ -2521,7 +2720,7 @@ img {
 }
 
 @media (max-width: 768px) {
-  .nav-links, .nav-btn-secondary, #header-search-btn { display: none; }
+  .nav-links, .nav-btn-secondary, .header-search-bar { display: none; }
   .hamburger-btn { display: flex; }
   .hero-title { font-size: 2.2rem; }
   .template-grid { grid-template-columns: repeat(2, 1fr); }
@@ -3394,50 +3593,19 @@ img {
 }
 
 .trending-card-item {
-  border-radius: 24px;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease;
-}
-
-.trending-card-item:hover {
-  transform: translateY(-8px);
-}
-
-.pink-confetti-bg {
-  background-color: #FFF2F4;
-  background-image: radial-gradient(#F8CCD3 15%, transparent 16%), radial-gradient(#F8CCD3 15%, transparent 16%);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
-}
-
-.pink-ribbons-bg {
-  background-color: #FFF2F4;
-  background-image: linear-gradient(45deg, #FBE3E7 25%, transparent 25%), linear-gradient(-45deg, #FBE3E7 25%, transparent 25%);
-  background-size: 40px 40px;
-}
-
-.card-item-container {
-  width: 220px;
-  height: 310px;
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: var(--shadow-md);
-  padding: 16px;
-  margin-bottom: 24px;
+  /* Inherits card structure from .template-card */
 }
 
 .trending-card-preview {
+  width: 100%;
   height: 100%;
   border-radius: 6px;
-  padding: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .back-to-school-theme {
@@ -3493,33 +3661,6 @@ img {
 .card-hw-footer {
   font-size: 0.75rem;
   font-weight: 600;
-}
-
-.trending-card-footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 8px;
-}
-
-.trending-card-footer span {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--charcoal);
-}
-
-.fav-star-btn {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #D792AC;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.fav-star-btn:hover {
-  color: #7C5CFC;
 }
 
 /* 3. New Wish Section */
