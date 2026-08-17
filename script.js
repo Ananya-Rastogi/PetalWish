@@ -647,6 +647,69 @@
         { id: 'el-cel-t1', type: 'text', content: 'UNDER THE STARS', fontSize: 12, fontFamily: 'Outfit', fontWeight: '700', color: '#E8A9C1', letterSpacing: 4, textAlign: 'center', x: 40, y: 280, width: 420, height: 28, rotation: 0 },
         { id: 'el-cel-t2', type: 'text', content: 'Celestial Gala', fontSize: 46, fontFamily: 'Playfair Display', fontWeight: '600', fontStyle: 'italic', color: '#FFFFFF', textAlign: 'center', x: 40, y: 315, width: 420, height: 70, rotation: 0 }
       ]
+    },
+    {
+      id: 'back-to-school',
+      title: 'Back to School Party',
+      category: 'Party',
+      style: 'Modern',
+      color: 'Blue',
+      orientation: 'Portrait',
+      tags: ['party', 'back to school', 'school', 'grid'],
+      bg: {
+        type: 'solid',
+        value: '#ECEFF1'
+      },
+      elements: [
+        {
+          id: 'el-bts-title',
+          type: 'text',
+          content: 'BaCk 2 sChOoL PaRtY',
+          fontSize: 28,
+          fontFamily: 'Playfair Display',
+          fontWeight: '700',
+          color: '#37474F',
+          textAlign: 'center',
+          x: 40,
+          y: 260,
+          width: 420,
+          height: 50,
+          rotation: 0
+        },
+        {
+          id: 'el-bts-date',
+          type: 'text',
+          content: 'Sunday\nSEPTEMBER 6TH\nat 1:00 PM',
+          fontSize: 16,
+          fontFamily: 'Inter',
+          fontWeight: '500',
+          color: '#37474F',
+          textAlign: 'center',
+          lineHeight: 1.5,
+          x: 40,
+          y: 320,
+          width: 420,
+          height: 90,
+          rotation: 0
+        },
+        {
+          id: 'el-bts-location',
+          type: 'text',
+          content: "JACKSON'S BACKYARD,\n789 GALA LANE",
+          fontSize: 14,
+          fontFamily: 'Inter',
+          fontWeight: '600',
+          color: '#37474F',
+          letterSpacing: 1,
+          textAlign: 'center',
+          lineHeight: 1.5,
+          x: 40,
+          y: 420,
+          width: 420,
+          height: 60,
+          rotation: 0
+        }
+      ]
     }
   ];
 
@@ -656,6 +719,7 @@
     RSVPS: 'petalwish_rsvps_v1',
     USER: 'petalwish_user_v1'
   };
+
 
   let state = {
     templates: INITIAL_TEMPLATES,
@@ -667,7 +731,7 @@
     selectedCategory: 'All',
     filters: { occasion: 'All', style: 'All', color: 'All', orientation: 'All' },
     activeModalTemplate: null,
-    
+
     // Active Canvas / Editor State
     editorDesignId: null,
     editorTitle: 'My Custom Design',
@@ -1228,7 +1292,7 @@
   // Generates complete HTML representation of a design or template inside gallery thumbnail
   function renderTemplateCardMarkup(template) {
     const isFav = state.favorites.includes(template.id);
-    const bgStyle = template.bg.type === 'solid' 
+    const bgStyle = template.bg.type === 'solid'
       ? `background-color: ${template.bg.value};`
       : `background: linear-gradient(135deg, ${template.bg.color1 || '#F4F0FC'}, ${template.bg.color2 || '#FFFFFF'});`;
 
@@ -1369,6 +1433,13 @@
   // --------------------------------------------------------------------------
   // 6. EDITOR CANVAS & INTERACTIVE TOOLING ENGINE
   // --------------------------------------------------------------------------
+  function getTemplateById(id) {
+    if (!id) return null;
+    return state.templates.find(t => t.id === id) ||
+      state.templates.find(t => t.id.startsWith(id)) ||
+      state.templates.find(t => t.id.includes(id)) || null;
+  }
+
   function openEditorWithTemplate(templateOrDesign) {
     state.editorDesignId = templateOrDesign.id;
     state.editorTitle = templateOrDesign.title || 'My Custom Design';
@@ -1435,9 +1506,17 @@
 
   // Render Main Interactive Canvas Surface
   function renderEditorCanvas() {
-    const bgStyle = state.editorBg.type === 'solid' 
-      ? `background-color: ${state.editorBg.value};`
-      : `background: linear-gradient(135deg, ${state.editorBg.color1}, ${state.editorBg.color2});`;
+    const bgStyle = state.editorBg.type === 'grid'
+      ? `
+    background-color: ${state.editorBg.value};
+    background-image:
+      linear-gradient(${state.editorBg.gridColor} 1px, transparent 1px),
+      linear-gradient(90deg, ${state.editorBg.gridColor} 1px, transparent 1px);
+    background-size: ${state.editorBg.gridSize}px ${state.editorBg.gridSize}px;
+  `
+      : state.editorBg.type === 'solid'
+        ? `background-color: ${state.editorBg.value};`
+        : `background: linear-gradient(135deg, ${state.editorBg.color1}, ${state.editorBg.color2});`;
 
     DOM.designCanvas.setAttribute('style', bgStyle);
     DOM.designCanvas.innerHTML = '';
@@ -2363,18 +2442,18 @@
     document.getElementById('modal-title').textContent = template.title;
     document.getElementById('modal-category').textContent = template.category;
     document.getElementById('modal-tags').innerHTML = template.tags.map(t => `<span class="meta-tag">${t}</span>`).join('');
-    
+
     const isFav = state.favorites.includes(template.id);
     document.getElementById('modal-fav-text').textContent = isFav ? 'Remove Favorite' : 'Save to Favorites';
 
     // Render Preview
     const container = document.getElementById('modal-canvas-render');
-    const bgStyle = template.bg.type === 'solid' 
+    const bgStyle = template.bg.type === 'solid'
       ? `background-color: ${template.bg.value};`
       : `background: linear-gradient(135deg, ${template.bg.color1}, ${template.bg.color2});`;
 
     container.setAttribute('style', `${bgStyle} position:relative; width:100%; height:100%; border-radius:8px; overflow:hidden;`);
-    
+
     container.innerHTML = template.elements.map(el => {
       let content = '';
       if (el.type === 'text') {
@@ -2447,7 +2526,7 @@
         e.preventDefault();
         const cat = btn.getAttribute('data-category');
         const subcat = btn.getAttribute('data-subcategory');
-        
+
         state.selectedCategory = cat;
         if (subcat) {
           state.searchQuery = subcat;
@@ -2481,19 +2560,19 @@
       DOM.navbarSearchInput.addEventListener('input', (e) => {
         const val = e.target.value.trim();
         state.searchQuery = val;
-        
+
         // Sync gallery input
         DOM.searchInput.value = val;
-        
+
         // Toggle navbar clear btn
         if (DOM.navbarClearSearchBtn) {
           DOM.navbarClearSearchBtn.classList.toggle('hidden', !val);
         }
-        
+
         if (DOM.clearSearchBtn) {
           DOM.clearSearchBtn.classList.toggle('hidden', !val);
         }
-        
+
         if (state.activeView !== 'explore') {
           switchView('explore');
         } else {
@@ -2813,7 +2892,7 @@
       if (useBtn) {
         e.stopPropagation();
         const id = useBtn.getAttribute('data-id');
-        const tpl = state.templates.find(t => t.id === id);
+        const tpl = getTemplateById(id);
         if (tpl) openEditorWithTemplate(tpl);
         return;
       }
@@ -2821,14 +2900,14 @@
       const interactiveCard = e.target.closest('.homepage-interactive-card');
       if (interactiveCard) {
         const id = interactiveCard.getAttribute('data-template-id');
-        const tpl = state.templates.find(t => t.id === id);
+        const tpl = getTemplateById(id);
         if (tpl) openEditorWithTemplate(tpl);
         return;
       }
 
       if (card && !e.target.closest('.btn-fav-card')) {
         const id = card.getAttribute('data-id');
-        const tpl = state.templates.find(t => t.id === id);
+        const tpl = getTemplateById(id);
         if (tpl) openEditorWithTemplate(tpl);
       }
     });
@@ -2950,7 +3029,7 @@
           title: state.editorTitle,
           text: 'Check out my custom design on PetalWish!',
           url: window.location.href
-        }).catch(() => {});
+        }).catch(() => { });
       } else {
         DOM.shareModalOverlay.classList.remove('hidden');
       }
@@ -3008,7 +3087,7 @@
 
     // Sliding Login / Signup UI Toggles
     const authWrapper = document.getElementById('auth-wrapper');
-    
+
     document.querySelectorAll('.register-trigger').forEach(trigger => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
