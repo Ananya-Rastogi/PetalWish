@@ -737,6 +737,8 @@
     editorTitle: 'My Custom Design',
     editorBg: { type: 'solid', value: '#FAF8F5' },
     editorElements: [],
+    editorSurface: 'front',
+    editorSurfaces: {},
     selectedElementId: null,
     zoomLevel: 1,
     historyStack: [],
@@ -1440,11 +1442,41 @@
       state.templates.find(t => t.id.includes(id)) || null;
   }
 
+  function createBlankDesign() {
+    openEditorWithTemplate({
+      id: null,
+      title: 'Untitled Card',
+      category: 'Custom Card',
+      tags: ['blank', 'custom'],
+      bg: { type: 'solid', value: '#FFFFFF' },
+      elements: []
+    });
+  }
+
   function openEditorWithTemplate(templateOrDesign) {
     state.editorDesignId = templateOrDesign.id;
     state.editorTitle = templateOrDesign.title || 'My Custom Design';
-    state.editorBg = JSON.parse(JSON.stringify(templateOrDesign.bg));
-    state.editorElements = JSON.parse(JSON.stringify(templateOrDesign.elements));
+    const defaultPaper = { type: 'solid', value: '#FFFDF9' };
+    state.editorSurfaces = templateOrDesign.surfaces
+      ? JSON.parse(JSON.stringify(templateOrDesign.surfaces))
+      : {
+          front: { bg: JSON.parse(JSON.stringify(templateOrDesign.bg)), elements: JSON.parse(JSON.stringify(templateOrDesign.elements)) },
+          insideLeft: {
+            bg: JSON.parse(JSON.stringify(defaultPaper)),
+            elements: [{ id: `inside-left-${Date.now()}`, type: 'text', content: 'A little note,\nmade especially for you.', fontSize: 28, fontFamily: 'Playfair Display', fontStyle: 'italic', color: '#796D68', textAlign: 'center', x: 60, y: 285, width: 380, height: 100, rotation: 0 }]
+          },
+          insideRight: {
+            bg: JSON.parse(JSON.stringify(defaultPaper)),
+            elements: [{ id: `inside-right-${Date.now()}`, type: 'text', content: 'Wishing you a beautiful day filled with moments worth remembering.\n\nWith warm wishes', fontSize: 24, fontFamily: 'Playfair Display', color: '#4F4743', lineHeight: 1.6, textAlign: 'center', x: 65, y: 240, width: 370, height: 220, rotation: 0 }]
+          },
+          back: {
+            bg: JSON.parse(JSON.stringify(defaultPaper)),
+            elements: [{ id: `back-${Date.now()}`, type: 'text', content: 'PetalWish\nCards that connect.', fontSize: 18, fontFamily: 'Playfair Display', color: '#8A817C', lineHeight: 1.5, textAlign: 'center', x: 125, y: 560, width: 250, height: 80, rotation: 0 }]
+          }
+        };
+    state.editorSurface = 'front';
+    state.editorBg = JSON.parse(JSON.stringify(state.editorSurfaces.front.bg));
+    state.editorElements = JSON.parse(JSON.stringify(state.editorSurfaces.front.elements));
     state.selectedElementId = null;
     state.historyStack = [];
     state.redoStack = [];
@@ -1453,12 +1485,51 @@
     if (DOM.designCanvasWrapper) DOM.designCanvasWrapper.style.transform = 'scale(1)';
     if (DOM.zoomPercentText) DOM.zoomPercentText.textContent = '100%';
     DOM.editorProjectTitle.value = state.editorTitle;
+    DOM.viewEditor.classList.remove('is-reviewing');
+    document.getElementById('editor-next-btn').querySelector('span').textContent = 'Next';
+    document.getElementById('editor-next-menu').classList.remove('open');
+    document.getElementById('editor-next-btn').setAttribute('aria-expanded', 'false');
 
     switchView('editor');
     renderEditorCanvas();
     renderSubpanel('templates');
     renderPropertiesPanel();
     pushHistoryState();
+    updateEditorSurfaceControls();
+  }
+
+  function persistActiveEditorSurface() {
+    if (!state.editorSurfaces[state.editorSurface]) return;
+    state.editorSurfaces[state.editorSurface] = {
+      bg: JSON.parse(JSON.stringify(state.editorBg)),
+      elements: JSON.parse(JSON.stringify(state.editorElements))
+    };
+  }
+
+  function updateEditorSurfaceControls() {
+    document.querySelectorAll('.card-surface-btn').forEach(button => {
+      button.classList.toggle('active', button.dataset.surface === state.editorSurface);
+    });
+    const label = document.getElementById('active-surface-label');
+    if (label) label.textContent = ({ front: 'Front Cover', insideLeft: 'Inside Left', insideRight: 'Inside Right', back: 'Back Cover' })[state.editorSurface];
+  }
+
+  function switchEditorSurface(surface) {
+    if (!state.editorSurfaces[surface] || surface === state.editorSurface) return;
+    persistActiveEditorSurface();
+    state.editorSurface = surface;
+    state.editorBg = JSON.parse(JSON.stringify(state.editorSurfaces[surface].bg));
+    state.editorElements = JSON.parse(JSON.stringify(state.editorSurfaces[surface].elements));
+    state.selectedElementId = null;
+    state.historyStack = [];
+    state.redoStack = [];
+    DOM.designCanvasWrapper.classList.remove('surface-turn');
+    void DOM.designCanvasWrapper.offsetWidth;
+    DOM.designCanvasWrapper.classList.add('surface-turn');
+    renderEditorCanvas();
+    renderPropertiesPanel();
+    pushHistoryState();
+    updateEditorSurfaceControls();
   }
 
   function pushHistoryState() {
@@ -2235,13 +2306,16 @@
 
   // Save current design to localStorage
   function saveCurrentDesign() {
+    persistActiveEditorSurface();
     const existingIdx = state.myDesigns.findIndex(d => d.id === state.editorDesignId);
+    const designId = state.editorDesignId || ('design-' + Date.now());
     const designObj = {
-      id: state.editorDesignId || ('design-' + Date.now()),
+      id: designId,
       title: state.editorTitle,
       updatedAt: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
       bg: state.editorBg,
       elements: state.editorElements,
+      surfaces: state.editorSurfaces,
       category: 'Saved Design'
     };
 
@@ -2250,6 +2324,8 @@
     } else {
       state.myDesigns.unshift(designObj);
     }
+
+    state.editorDesignId = designId;
 
     localStorage.setItem(STORAGE_KEYS.DESIGNS, JSON.stringify(state.myDesigns));
     showToast('Design saved successfully.');
@@ -2452,18 +2528,18 @@
       ? `background-color: ${template.bg.value};`
       : `background: linear-gradient(135deg, ${template.bg.color1}, ${template.bg.color2});`;
 
-    container.setAttribute('style', `${bgStyle} position:relative; width:100%; height:100%; border-radius:8px; overflow:hidden;`);
+    container.removeAttribute('style');
 
-    container.innerHTML = template.elements.map(el => {
+    const coverArtwork = template.elements.map(el => {
       let content = '';
       if (el.type === 'text') {
         const textStyle = `
           font-family: ${el.fontFamily || 'Inter'};
-          font-size: ${(el.fontSize || 14) * 0.65}px;
+          font-size: ${(el.fontSize || 14) / 5}cqw;
           font-weight: ${el.fontWeight || '400'};
           font-style: ${el.fontStyle || 'normal'};
           color: ${el.color || '#2C2A29'};
-          letter-spacing: ${(el.letterSpacing || 0) * 0.5}px;
+          letter-spacing: ${(el.letterSpacing || 0) / 5}cqw;
           line-height: ${el.lineHeight || 1.3};
           text-align: ${el.textAlign || 'center'};
           white-space: pre-wrap;
@@ -2475,8 +2551,46 @@
         content = `<img src="${el.url}" style="width:100%;height:100%;object-fit:cover;" alt="Photo">`;
       }
 
-      return `<div style="position:absolute;left:${el.x * 0.68}px;top:${el.y * 0.68}px;width:${el.width * 0.68}px;height:${el.height * 0.68}px;transform:rotate(${el.rotation || 0}deg);">${content}</div>`;
+      return `<div style="position:absolute;left:${el.x / 5}%;top:${el.y / 7}%;width:${el.width / 5}%;height:${el.height / 7}%;transform:rotate(${el.rotation || 0}deg);">${content}</div>`;
     }).join('');
+
+    container.innerHTML = `
+      <button class="paper-card-scene" type="button" aria-label="Open ${template.title}" aria-expanded="false">
+        <span class="paper-card-stage">
+          <span class="paper-card-leaf paper-card-base">
+            <span class="paper-card-face paper-card-inside-right">
+              <span class="paper-card-kicker">${template.category}</span>
+              <strong>${template.title}</strong>
+              <span class="paper-card-message">Wishing you a beautiful day filled with moments worth remembering.</span>
+              <span class="paper-card-signoff">With warm wishes</span>
+            </span>
+            <span class="paper-card-face paper-card-back-cover">
+              <span class="paper-card-brand">PetalWish</span>
+              <small>Cards that connect.</small>
+            </span>
+          </span>
+          <span class="paper-card-leaf paper-card-cover">
+            <span class="paper-card-face paper-card-front" style="${bgStyle}">
+              ${coverArtwork}
+              <span class="paper-card-edge"></span>
+            </span>
+            <span class="paper-card-face paper-card-inside-left">
+              <span class="paper-card-ornament">✦</span>
+              <span>A little note,<br>made especially for you.</span>
+            </span>
+          </span>
+          <span class="paper-card-floor-shadow"></span>
+        </span>
+        <span class="paper-card-instruction">Click to open</span>
+      </button>`;
+
+    const paperCard = container.querySelector('.paper-card-scene');
+    paperCard.addEventListener('click', () => {
+      const isOpen = paperCard.classList.toggle('is-open');
+      paperCard.setAttribute('aria-expanded', String(isOpen));
+      paperCard.setAttribute('aria-label', `${isOpen ? 'Close' : 'Open'} ${template.title}`);
+      paperCard.querySelector('.paper-card-instruction').textContent = isOpen ? 'Click to close' : 'Click to open';
+    });
 
     // Related
     const related = state.templates.filter(t => t.category === template.category && t.id !== template.id).slice(0, 4);
@@ -2495,6 +2609,19 @@
     });
 
     DOM.templateModalOverlay.classList.remove('hidden');
+  }
+
+  function openCurrentEditorCardPreview() {
+    const sourceTemplate = getTemplateById(state.editorDesignId) || {};
+    openTemplateModal({
+      ...sourceTemplate,
+      id: state.editorDesignId || `preview-${Date.now()}`,
+      title: state.editorTitle || 'My Custom Design',
+      category: sourceTemplate.category || 'Custom Card',
+      tags: sourceTemplate.tags || ['custom', 'card'],
+      bg: JSON.parse(JSON.stringify(state.editorBg)),
+      elements: JSON.parse(JSON.stringify(state.editorElements))
+    });
   }
 
   // Toast Notification Manager
@@ -2665,12 +2792,12 @@
 
     const headerCreateBtn = document.getElementById('header-create-btn');
     if (headerCreateBtn) {
-      headerCreateBtn.addEventListener('click', () => openEditorWithTemplate(state.templates[0]));
+      headerCreateBtn.addEventListener('click', createBlankDesign);
     }
 
     const heroCreateBtn = document.getElementById('hero-create-btn');
     if (heroCreateBtn) {
-      heroCreateBtn.addEventListener('click', () => openEditorWithTemplate(state.templates[0]));
+      heroCreateBtn.addEventListener('click', createBlankDesign);
     }
 
     const heroExploreBtn = document.getElementById('hero-explore-btn');
@@ -2706,7 +2833,7 @@
     const reasonsUploadBtn = document.getElementById('reasons-upload-btn');
     if (reasonsUploadBtn) {
       reasonsUploadBtn.addEventListener('click', () => {
-        openEditorWithTemplate(state.templates[0]);
+        createBlankDesign();
       });
     }
 
@@ -2725,7 +2852,7 @@
     const headerNavStudio = document.getElementById('header-nav-studio');
     if (headerNavStudio) {
       headerNavStudio.addEventListener('click', () => {
-        openEditorWithTemplate(state.templates[0]);
+        createBlankDesign();
       });
     }
 
@@ -2864,8 +2991,8 @@
     }
 
     document.getElementById('dash-nav-back').addEventListener('click', () => switchView('home'));
-    document.getElementById('dash-create-btn').addEventListener('click', () => openEditorWithTemplate(state.templates[0]));
-    document.getElementById('empty-create-btn').addEventListener('click', () => openEditorWithTemplate(state.templates[0]));
+    document.getElementById('dash-create-btn').addEventListener('click', createBlankDesign);
+    document.getElementById('empty-create-btn').addEventListener('click', createBlankDesign);
 
     // Quick View Modal Triggers
     document.addEventListener('click', (e) => {
@@ -2908,7 +3035,7 @@
       if (card && !e.target.closest('.btn-fav-card')) {
         const id = card.getAttribute('data-id');
         const tpl = getTemplateById(id);
-        if (tpl) openEditorWithTemplate(tpl);
+        if (tpl) openTemplateModal(tpl);
       }
     });
 
@@ -2942,6 +3069,34 @@
     document.getElementById('editor-exit-btn').addEventListener('click', () => switchView('home'));
     document.getElementById('editor-save-btn').addEventListener('click', saveCurrentDesign);
     document.getElementById('editor-download-btn').addEventListener('click', exportCanvasToPng);
+    document.getElementById('editor-3d-preview-btn').addEventListener('click', openCurrentEditorCardPreview);
+    document.querySelectorAll('.card-surface-btn').forEach(button => {
+      button.addEventListener('click', () => switchEditorSurface(button.dataset.surface));
+    });
+    document.getElementById('editor-next-btn').addEventListener('click', () => {
+      persistActiveEditorSurface();
+      const menu = document.getElementById('editor-next-menu');
+      const isOpen = menu.classList.toggle('open');
+      document.getElementById('editor-next-btn').setAttribute('aria-expanded', String(isOpen));
+    });
+    document.querySelectorAll('.editor-next-option').forEach(option => {
+      option.addEventListener('click', () => {
+        document.getElementById('editor-next-menu').classList.remove('open');
+        document.getElementById('editor-next-btn').setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.addEventListener('click', (event) => {
+      const menu = document.getElementById('editor-next-menu');
+      if (menu && !menu.contains(event.target)) {
+        menu.classList.remove('open');
+        document.getElementById('editor-next-btn').setAttribute('aria-expanded', 'false');
+      }
+    });
+    DOM.designCanvas.addEventListener('click', (event) => {
+      if (event.target === DOM.designCanvas) {
+        openCurrentEditorCardPreview();
+      }
+    });
     document.getElementById('undo-btn').addEventListener('click', undo);
     document.getElementById('redo-btn').addEventListener('click', redo);
 
@@ -3024,15 +3179,7 @@
 
     // Share Modal
     document.getElementById('editor-share-btn').addEventListener('click', () => {
-      if (navigator.share) {
-        navigator.share({
-          title: state.editorTitle,
-          text: 'Check out my custom design on PetalWish!',
-          url: window.location.href
-        }).catch(() => { });
-      } else {
-        DOM.shareModalOverlay.classList.remove('hidden');
-      }
+      DOM.shareModalOverlay.classList.remove('hidden');
     });
 
     document.getElementById('share-modal-close').addEventListener('click', () => {
@@ -3045,6 +3192,80 @@
       document.execCommand('copy');
       DOM.shareModalOverlay.classList.add('hidden');
       showToast('Design link copied to clipboard!');
+    });
+
+    document.getElementById('send-email-btn').addEventListener('click', async () => {
+      const sendButton = document.getElementById('send-email-btn');
+      const sendButtonLabel = sendButton.querySelector('span');
+      const name = document.getElementById('email-recipient-name').value.trim();
+      const emailInput = document.getElementById('email-recipient-email').value.trim();
+      const customMessage = document.getElementById('email-custom-message').value.trim();
+      const cardUrl = document.getElementById('share-link-input').value.trim();
+
+      if (!emailInput) {
+        showToast('No email address is available for this card.');
+        return;
+      }
+
+      const recipients = emailInput
+        .split(/[;,]/)
+        .map(email => email.trim())
+        .filter(Boolean);
+      const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      if (!recipients.length || recipients.some(email => !isValidEmail(email))) {
+        showToast('Please enter valid recipient email addresses.');
+        return;
+      }
+
+      const greeting = name ? `Hi ${name},` : 'Hi,';
+      const linkSection = cardUrl ? `\n\nYou can view it here:\n${cardUrl}` : '';
+      const subject = `Check out ${state.editorTitle || 'this card'}`;
+      const message = customMessage || 'I wanted to share this card with you.';
+      const body = `${greeting}\n\n${message}${linkSection}`;
+
+      sendButton.disabled = true;
+      sendButtonLabel.textContent = 'Sending...';
+
+      try {
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service_id: 'service_fz70vl9',
+            template_id: 'template_0ty4njh',
+            user_id: 'yFdSrc1GvjZm7sWd0',
+            template_params: {
+              to_email: recipients.join(', '),
+              recipient_email: recipients.join(', '),
+              email: recipients.join(', '),
+              user_email: recipients.join(', '),
+              recipient: recipients.join(', '),
+              to: recipients.join(', '),
+              to_name: name || 'Friend',
+              name: name || 'Friend',
+              subject,
+              message: body,
+              custom_message: message,
+              card_url: cardUrl
+            }
+          })
+        });
+
+        if (!response.ok) {
+          const errorMessage = await response.text();
+          throw new Error(errorMessage || `EmailJS request failed (${response.status})`);
+        }
+
+        DOM.shareModalOverlay.classList.add('hidden');
+        showToast('Email sent successfully.');
+      } catch (error) {
+        console.error('Unable to send email:', error);
+        showToast('The email could not be sent. Please try again.');
+      } finally {
+        sendButton.disabled = false;
+        sendButtonLabel.textContent = 'Send Email';
+      }
     });
 
     // Keyboard Shortcuts
@@ -3187,6 +3408,54 @@
     renderTrending();
     setupEventListeners();
     window.addEventListener('resize', () => requestAnimationFrame(scaleCardThumbs));
+    initTemplateLottieAnimations();
+  }
+
+  function initTemplateLottieAnimations() {
+    const containers = document.querySelectorAll('.template-lottie-layer');
+    if (!containers.length) return;
+    if (!window.lottie || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      containers.forEach(container => container.classList.add('lottie-fallback'));
+      return;
+    }
+
+    const colors = [[1, .25, .48, 1], [.05, .75, .5, 1], [.49, .36, .98, 1], [1, .78, .18, 1], [1, 1, 1, 1]];
+    const makeLayer = (index, alternate) => {
+      const x = 35 + ((index * 83) % 530);
+      const endX = x + (index % 2 ? 34 : -28);
+      const size = 9 + (index % 4) * 4;
+      const color = colors[(index + (alternate ? 2 : 0)) % colors.length];
+      return {
+        ddd: 0, ind: index + 1, ty: 4, nm: `confetti-${index}`, sr: 1,
+        ks: {
+          o: { a: 0, k: 88 },
+          r: { a: 1, k: [{ t: 0, s: [0] }, { t: 90, s: [360] }] },
+          p: { a: 1, k: [{ t: 0, s: [x, -40 - index * 31, 0] }, { t: 90, s: [endX, 650 - index * 9, 0] }] },
+          a: { a: 0, k: [0, 0, 0] }, s: { a: 0, k: [100, 100, 100] }
+        },
+        ao: 0,
+        shapes: [
+          index % 3 === 0
+            ? { ty: 'rc', d: 1, s: { a: 0, k: [size * 2.2, size * .65] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 3 }, nm: 'Ribbon' }
+            : { ty: 'el', d: 1, s: { a: 0, k: [size, size] }, p: { a: 0, k: [0, 0] }, nm: 'Dot' },
+          { ty: 'fl', c: { a: 0, k: color }, o: { a: 0, k: 100 }, r: 1, nm: 'Fill' }
+        ],
+        ip: 0, op: 90, st: 0, bm: 0
+      };
+    };
+
+    containers.forEach((container, containerIndex) => {
+      window.lottie.loadAnimation({
+        container,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: {
+          v: '5.12.2', fr: 30, ip: 0, op: 90, w: 600, h: 600, nm: 'PetalWish celebration', ddd: 0, assets: [],
+          layers: Array.from({ length: 13 }, (_, index) => makeLayer(index, containerIndex % 2 === 1))
+        }
+      });
+    });
   }
 
   document.addEventListener('DOMContentLoaded', init);
