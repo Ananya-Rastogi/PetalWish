@@ -2592,22 +2592,6 @@
       paperCard.querySelector('.paper-card-instruction').textContent = isOpen ? 'Click to close' : 'Click to open';
     });
 
-    // Related
-    const related = state.templates.filter(t => t.category === template.category && t.id !== template.id).slice(0, 4);
-    document.getElementById('modal-related-grid').innerHTML = related.map(r => `
-      <div class="related-thumb" data-id="${r.id}" title="${r.title}">
-        <div style="width:100%;height:100%;${r.bg.type === 'solid' ? 'background:' + r.bg.value : 'background:linear-gradient(135deg,' + r.bg.color1 + ',' + r.bg.color2 + ')'}"></div>
-      </div>
-    `).join('');
-
-    document.querySelectorAll('.related-thumb').forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        const id = thumb.getAttribute('data-id');
-        const nextTpl = state.templates.find(t => t.id === id);
-        if (nextTpl) openTemplateModal(nextTpl);
-      });
-    });
-
     DOM.templateModalOverlay.classList.remove('hidden');
   }
 

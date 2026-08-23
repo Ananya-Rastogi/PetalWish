@@ -2997,32 +2997,6 @@ img {
   margin-bottom: 32px;
 }
 
-.modal-related-section h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.related-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.related-thumb {
-  aspect-ratio: 5 / 7;
-  border-radius: var(--radius-xs);
-  background-color: var(--bg-subtle);
-  cursor: pointer;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-  transition: transform var(--transition-fast);
-}
-
-.related-thumb:hover {
-  transform: scale(1.05);
-}
-
 /* Toast Notifications */
 .toast-container {
   position: fixed;
